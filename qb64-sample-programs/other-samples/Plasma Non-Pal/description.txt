@@ -1,0 +1,3 @@
+'///Non Palette rotated plasma
+'///Relsoft 2003
+'///Compile and see the speed.  Didn't optimize it as much as I want though...

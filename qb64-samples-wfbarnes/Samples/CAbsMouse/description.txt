@@ -1,0 +1,4 @@
+'Mouse utilities for text mode. Written by TFM 9/11/94
+'Uses INT 33 to use a Microsoft Compatable mouse driver
+'Written in basic calling an assembly language routine.
+'Works in normal basic

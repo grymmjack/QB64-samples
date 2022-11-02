@@ -1,0 +1,30 @@
+Taito's Space Invaders
+
+
+    ##     The Invaders march ...
+   ####      Bom bom bom bom ...
+  ######       Left, right, fire!
+ ## ## ##        Faster, faster they march ...
+ ########          Suddenly you're 11 again!
+   #  #              Dodge the bombs ...
+  # ## #               They're turning green ...
+ # #  # #                Get them before they land!
+
+
+A version of Taito's original Space Invaders(TM) for the PC
+
+anarky, April 2005
+
+http://www.anarky.tk/
+anarkynet@hotmail.com
+
+Disclaimer
+
+This game is mailware. That is, it's free to use and distribute anywhere you
+like, but only on condition that you keep the two files together and that you
+don't charge any payment for it. Also, when you download it, email me on the
+above address.
+
+Also, I cannot be held responsible if this program does anything nasty to your
+machine. It hasn't damaged anyone's PC that I'm aware of and there's no reason
+why it should, really.

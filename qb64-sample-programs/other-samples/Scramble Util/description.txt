@@ -1,0 +1,53 @@
+1 '  SCRAMBLE.BAS by Larry Sessions
+2 '  Copyright (C) 1992 DOS Resource Guide
+3 '  Published in Issue #4, page 74
+4 '  This program works with both QBasic and GW-Basic
+
+1 '  DESCRAM.BAS by Larry Sessions
+2 '  Copyright (C) 1992 DOS Resource Guide
+3 '  Published in Issue #4, page 74
+4 '  This program works with both QBasic and GW-Basic
+
+==============================================================================
+
+--------------
+ SCRAMBLE.BAS
+ DESCRAM.BAS
+--------------
+SYSTEM REQUIREMENTS: The version of QBasic that comes with DOS 5 or later, 
+Microsoft Quick Basic 4.x, or GW-Basic.
+
+WHAT THE PROGRAMS DO:
+SCRAMBLE.BAS scrambles the contents of text files so that are unreadable.  Use 
+it to protect sensitive files from being read by others.  DESCRAM.BAS reverses 
+the scrambling process and restores files to their original form.  For use 
+ONLY with text files.  Do NOT use these programs with .COM, .EXE, or other 
+kinds of binary files!  Loss of data could result!
+
+USING SCRAMBLE.BAS AND DESCRAM.BAS:
+To scramble a text file, load SCRAMBLE.BAS by typing QBASIC SCRAMBLE.BAS 
+(using path names if necessary) at the DOS prompt. Then, run the program by 
+selecting the Start option in QBasic's Run menu, or press Shift-F5. After the 
+screen clears you will be prompted for the name of the text file you wish to 
+scramble.  After you supply the name of the file to scramble, you will be 
+asked to enter the name of the file to which the scramble data should be 
+written.  This must be a file name different from the original file.  When you 
+press Enter, SCRAMBLE.BAS will scramble the contents of the first file, write 
+the scrambled data to the second file, then delete the original file.  If you 
+display the scrambled file with DOS's TYPE command, it will appear to be full 
+of meaningless symbols and characters.
+
+To descramble the file, run DESCRAM.BAS.  You'll be prompted to enter the file 
+name of the scrambled file, then the file name to which the unscrambled data 
+should be written.  DESCRAM.BAS will descramble the file, create the 
+unscrambled version, then delete the scrambled file.
+
+For further details on PHONE.BAS, see "Seven Programs to Safeguard Your Files" 
+(DRG #4, page 74).
+
+==============================================================================
+
+-------------
+ DESCRAM.BAS
+-------------
+See the instructions for SCRAMBLE.BAS

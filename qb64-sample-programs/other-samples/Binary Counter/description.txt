@@ -1,0 +1,7 @@
+' This program is a 12-bit Binary counter, displayed using a 3x4 grid.
+' It was created in the honour of an old acquaintance who became
+'   obsessed with the binary number system.
+'
+' It uses extended character code 219 from IBM code page 437 to render
+'   the ON state and a simple space (character code 32) to render the
+'   OFF state.

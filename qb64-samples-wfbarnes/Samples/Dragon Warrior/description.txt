@@ -1,0 +1,8 @@
+QB64 version of Nintendo Dragon Quest (Dragon Warrior).  The time has come to go on your quest to find and defeat the evil DragonLord.  I hope that you have fun playing this game.
+
+DEFAULT Controls:
+It does have a better feel when playing with a Joypad but it is not required.
+Start button = A (upper case)
+A Button = Space bar (accept selection)
+B Button = Enter (cancel action\ selection)
+Arrow keys for movement

@@ -1,0 +1,1 @@
+Eccentric chess implementation by Richard Frost.

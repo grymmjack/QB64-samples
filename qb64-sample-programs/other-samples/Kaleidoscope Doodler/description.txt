@@ -1,0 +1,1 @@
+Left-click to draw, right click or middle click to clear screen, escape to quit.

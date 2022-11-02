@@ -1,0 +1,4 @@
+' TILE.BAS
+'   by Greg Ennen
+' Copyright (C) 1995 DOS World
+' Published in Issue #21, May 1995, page 57

@@ -1,0 +1,3 @@
+Given a string of words separated by spaces (or any other character), splits it into an array of the words. I've no doubt many people have written a version of this over the years and no doubt there's a million ways to do it, but I thought I'd put mine here so we have at least one version. There's also a join function that does the opposite array -> single string.
+
+Code is hopefully reasonably self explanatory with comments and a little demo. Note, this is akin to Python/JavaScript split/join, PHP explode/implode.

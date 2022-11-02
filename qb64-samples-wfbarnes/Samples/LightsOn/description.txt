@@ -1,0 +1,5 @@
+'Lights On
+'A game by Fellippe Heitor.
+'
+'Original concept by Avi Olti, Gyora Benedek, Zvi Herman, Revital Bloomberg, Avi Weiner and Michael Ganor
+'https://en.wikipedia.org/wiki/Lights_Out_(game)

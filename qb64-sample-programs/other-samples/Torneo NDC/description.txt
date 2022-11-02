@@ -1,0 +1,25 @@
+Ascii-based spaceship game with music.
+
+'
+'                               FGR SOFTWARE
+'                                Torneo NDC
+'
+'=============================================================================
+'Torneo NDC:
+'Este juego intenta ser un juego al estilo galaxian, solo que muy pobre...
+'Tiene 14 o 15 niveles, y es casi siemprelo mismo, solo que cambia el color
+'de las naves enemigas (X), la dificultad, y se van acumulando las vidas y
+'los puntajes...
+'Las teclas son: A (para movernos a la izquierda)
+'=============== S (para la derecha)
+'                X (para disparar).
+'
+'=============================================================================
+'
+'Ya se que los comandos son un poco malos, pero sinceramente ya me canse de
+'moverme con las flechas, y disparar con barra. Mi barra ya esta destrozada!
+'Bueno, si tienen algun comentario o critica constructiva (no agresiones)
+'escribanmen a fernandogastonramirez@yahoo.com.ar
+'Visiten www.fgrqbasic.co.nr
+'
+'==============================================================================

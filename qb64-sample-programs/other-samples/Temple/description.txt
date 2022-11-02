@@ -1,0 +1,7 @@
+710 REM    ****************************************************
+720 REM    *  WRITTEN BY JOHN BELEW FOR USE WITH THE I.B.M.   *
+730 REM    *            AND OTHER COMPATIBLE                  *
+740 REM    *        THANKS TO TSR FOR THE MONSTERS            *
+750 REM    * THANKS TO RECREATIONAL COMPUTING FOR THE ORIGINAL*
+760 REM    * PROGRAM          JUNE 29, 1984                   *
+770 REM    ****************************************************

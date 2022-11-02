@@ -1,0 +1,127 @@
+' QBasic Beautifier by Kewbie_newbie, found at Aliphas page
+'
+' THIS PROGRAM USED FEATURES AVAILABLE ONLY IN QuickBasic 7.1 (as far as
+'   I know) (Tested in Qb 4.5 by Antoni Gual)
+'
+'  The 'Quick Basic Beautifier' program performs the following actions:
+'
+'    1.  Indents program lines according to control flow structures
+'    2.  Removes stupid, useless, unnecessary 'LET' statements (unless
+'        overridden)
+'    3.  Changes 'REM' keyword to ' (unless overridden)
+'    4.  Optionally re-aligns trailing comments
+'    5.  Optionally removes all comments
+'    6.  Optionally allows a left margin and/or line length to be set (for
+'        output to a printer, perhaps
+'
+'                         Quick Basic Beautifier
+'
+' Usage:
+'
+'  qbb InFile[.Ext] [OutFile[.Ext]] [/C:A|B|#] /F [/L] [/M:#[,#]] [/R:?] [/T:#]
+'   [/Q]
+'
+'   File extentions are optional.  If the InFile extension is omitted,
+'   'BAS' is assumed.  If the OutFile extension is omitted, 'QBB' is
+'   assumed.  If the OutFile is omitted, 'InFile.QBB' is assumed.
+'   If the OutFile starts with a '.', OutFile will being 'InFile.<specified ext>'.
+'
+'   The colons on the switches are optional.  Switches are not case sensitive
+'
+'   /C:A|B|T - move trailing comments to the line above or below.
+'              Default = leave trailing
+'   /C:#     - align trailing comments to column #
+'              (See note below)
+'   /F       - include OPEN/CLOSE in nesting
+'              (a word of caution: MOST of the time, you probably will NOT
+'               be happy with the results of using this switch)
+'   /L       - do not remove useless 'LET' statements.
+'              Default = whack 'em
+'   /M:#[,#] - left Margin width [and line length] (possibly to format
+'              output for a printer -- see note below)
+'              Default = leave as is
+'   /R:?     - controls comment keyword.
+'      '     - use ' keyword (default)
+'      N     - do not change keyword
+'      D     - delete all comments
+'   /S:L     - keep only 'looping' statements on a single line
+'              ('LOOPING' mode - see note below)
+'   /S:#     - controls handling of multi-statement lines
+'              # is the number of statements to keep on a line
+'              Default = 0 (no multi-statement line splitting)
+'              1 = put every statement on a separate line
+'              2 - infinity = leave up to 'n' statements on a line
+'              (see note below)
+'   /T:#     - # is the number of columns per tab.
+'              Default = 2 columns
+'   /Q       - quiet mode, no info or pause to reflect, just do it
+'
+' Notes:
+'
+'   The input to QBB must be parsable by qbasic, and the keywords must be
+'   in upper case.  If you download something that was entered in lower
+'   case, load and save it with qbasic first to adjust the case of the
+'   keywords
+'
+'   I have included a new feature in this version: if there is a particular
+'   sequence of switches that you always use, say "/T3 /C40 /Q", you can
+'   set the environment variable "QBBOPT" to specify those switches and
+'   QBB will operate as if those switches had been specified at invocation.
+'   These default settings can be overridden.  Simply specify a new value
+'   on the command line when invoking QBB.  The /F /L and /Q switches
+'   act as toggles, so to turn off /Q in the above example, to turn quiet
+'   mode OFF, you would invoke QBB with "QBB infile.bas outfile.qbb /Q".
+'   And of course you can add additional switches if you need to
+'
+'   The input and output files can not be the same.  QBB checks for this
+'   and wont allow it
+'
+'   If a comment column is specified and a line is too long, the trailing
+'   comment will be separated from the end of the line by one space
+'
+'   If a line length is specified (with or without a margin), comment
+'   alignment is forced to "ABOVE".  It just made things easier. Also,
+'   the output will almost certainly not interpret or compile properly,
+'   I added this feature only because a printer I sometimes use doesn't
+'   wrap long lines to the next line, it truncates them!  (I use it be-
+'   cause it's FAST.  A couple of people have asked me 'How fast?'.  It
+'   was a laser printer that was channel attached to an IBM mainframe,
+'   and at a guess, I'd say it printed 80 to 100 pages a minute.  All I
+'   can tell you is that the paper went by too fast for me to be able
+'   to read.  Alas, it wasn't being used enough to justify keeping it,
+'   so it was taken away :(..... )
+'
+'   Qbasic breaks long program lines into shorter pieces and stores them
+'   in the source file with a continuation character at the end (" _"). QBB
+'   concatenates these continued lines together in the output file.  The
+'   first time the program is saved by qbasic, it will store the lines the
+'   way it was designed to.  If you load a source file that has one of
+'   these long lines and try to compile it under qbasic 4.5 or 7.1 (the
+'   only ones I've tried, it will fail with 'line too long' errors, and
+'   other errors probably unrelated to any actual errors in the program.
+'   To fix this, save the program before compiling
+'
+'   The output is indented the way I like it!
+'
+'   If the /S switch is omitted, or '/S:0' is specified, QBB will handle
+'   multiple statement lines as it did prior to this version, i.e., not
+'   very well.  Especially if there are embeded structuring keywords.  It
+'   does handle a few common cases
+'
+'   With the addition of the '/S' switch, QBB now handles multiple state-
+'   ment lines more effectively.  There are essentially ?? modes for split-
+'   ting lines with multiple statments.  'LOOPING' mode causes QBB to
+'   leave multiple statements on lines that have both a 'DO' and a 'LOOP'
+'   statement, or 'FOR' and 'NEXT' or 'WHILE' and 'WEND'.
+'
+'   qbasic always seems to move labels to column 1.  QBB will indent any
+'   labels which are placed inside control-flow structures.  qbasic will
+'   move them to column 1 the first time the program is loaded
+'
+'   All three qbasic help files indicate that a label can have blanks
+'   and tabs between the label and the colon.  When such a line is
+'   added to a program, qbasic moves the colon to the end of the label.
+'   QBB always places the colon at the end of the label
+'
+' "NO PROBLEM IS INSOLUBLE IN ALL CONCIEVABLE CIRCUMSTANCES"
+' (Cosmic AC in "The Last Question" by Isaac Asimov)

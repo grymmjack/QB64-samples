@@ -1,0 +1,2 @@
+PRINT "Welcome to the ultimate ASCII-player game: MOVE!"
+PRINT "v.1.0                       by mxmm"

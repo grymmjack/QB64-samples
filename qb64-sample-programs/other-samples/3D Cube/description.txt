@@ -1,0 +1,5 @@
+3d cube
+polygon filled using paint. ;*)
+I could probably shorten the code in less than 20 lines but
+I'd rather make another 25 liner. ;*)
+Relsoft 2003

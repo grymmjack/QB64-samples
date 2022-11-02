@@ -1,0 +1,4 @@
+10 REM *** CAROLS.BAS   A selection of Christmas Carols by Greg Rismoen 12/09/84
+20 REM
+30 REM Merry Christmas! This was programmed on my own time at home on an IBM-XT.
+40 REM Donated to the public domain. All rights reserved. Not for commercial use.

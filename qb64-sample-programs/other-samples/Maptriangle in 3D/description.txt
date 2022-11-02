@@ -1,0 +1,3 @@
+A demo to show rotation in 3D using MAPTRIANGLE 3D, without direct OpenGL statements.
+
+Librarian's Note: The sample given here is just one of a number of _MAPTRIANGLE(3D) examples which appear in Petr's post. That post is a good learning resource for anyone wanting to learn 3D graphics using _MAPTRIANGLE(3D). See https://qb64forum.alephc.xyz/index.php?topic=300.msg101478#msg101478

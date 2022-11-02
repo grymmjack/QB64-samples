@@ -1,0 +1,43 @@
+'  CHK.BAS by Paul Lamar
+'  Copyright (C) 1993 DOS Resource Guide
+'  Published in Issue #12, November 1993, page 9
+'  Runs CHKDSK if it has not been run during the current month
+CLS
+FF% = 0
+ON ERROR GOTO FIXOLDDATEFILE
+OPEN "DATE.OLD" FOR INPUT AS #1
+ON ERROR GOTO 0
+INPUT #1, OLDMONTH$
+OLDMONTH = VAL(MID$(OLDMONTH$, 1, 2)) - FF%
+NEWMONTH = VAL(MID$(DATE$, 1, 2))
+IF OLDMONTH <> NEWMONTH THEN GOSUB DOCHKDSK
+CLS
+CLOSE
+SYSTEM
+
+DOCHKDSK:
+PRINT "Running CHKDSK ..."
+SHELL "CHKDSK >> DISK.DAT"        'Append the CHKDSK data
+OPEN "DISK.DAT" FOR APPEND AS #3
+PRINT #3,
+PRINT #3, DATE$                   'Date-stamp the file
+PRINT #3,
+CLOSE #3
+SHELL "MORE < DISK.DAT"
+PRINT "Press ENTER to continue."
+LINE INPUT A$
+CLOSE #1
+OPEN "DATE.OLD" FOR OUTPUT AS #1
+PRINT #1, DATE$
+RETURN
+
+FIXOLDDATEFILE:
+OPEN "DATE.OLD" FOR OUTPUT AS #2
+PRINT #2, DATE$
+CLOSE #2
+FF% = 1
+RESUME
+
+
+
+

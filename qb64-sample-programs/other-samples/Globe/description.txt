@@ -1,0 +1,5 @@
+Glen Jeh, 8/12/1994, William Yu (05-28-96)
+
+'{A little rotating sphere, by Glen Jeh, 8/12/1994, use freely}
+'{Try messing with the constants...code is squished a little}
+' Converted to BASIC by William Yu (05-28-96)

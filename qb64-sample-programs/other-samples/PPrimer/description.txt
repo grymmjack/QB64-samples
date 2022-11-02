@@ -1,0 +1,75 @@
+ ' ----------------------------------------------------------------
+ ' PPRIMER.BAS (Printer Primer) by John Wolfskill
+ ' Copyright (C) 1992 DOS Resource Guide
+ ' Published in Issue #5, page 57.
+ '
+ ' Requirements: MS-DOS Qbasic or Microsoft QuickBasic 4.x
+ '-----------------------------------------------------------------
+
+==============================================================================
+
+-------------
+ PPRIMER.BAS
+-------------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later, or Microsoft Quick Basic 
+4.x, and a printer connected to your computer's parallel printer port.
+
+WHAT PPRIMER.BAS DOES:
+This QBasic utility helps you tap most of your printer's special features 
+while working at the DOS prompt. It lets you send as many as twelve 49-
+character control strings to any printer, and it also provides a way to 
+quickly set up your printer before you load software that doesn't understand 
+printer control codes.
+
+The program automatically saves your favorite printer setup strings in a data 
+file, which allows you to quickly initialize your printer and change print 
+modes, type styles, margin settings, and the like.
+
+USING PPRIMER.BAS
+To load the program, type QBASIC PPRIMER.BAS (using path names if necessary) 
+at the DOS prompt. Next, turn on your printer and place it on line. Then, run 
+the program by selecting the Start option in QBasic's Run menu, or press 
+Shift-F5.
+
+PPRIMER.BAS begins by displaying two blank boxes and three options: Assign, 
+Send, and Quit. Choose option A to assign control strings to a particular 
+keystroke. The Action box on the left lists twelve keys (A through L) that you 
+may assign to a particular function. If, for example, you want to use the A 
+key to put your printer in letter-quality mode and choose a sans serif 
+typeface, select A again and type in a short description of the action, 
+abbreviating as necessary. Then press Enter.
+
+Next, press the A key and then the C key to assign a control sequence. Using 
+your printer's manual as a reference, type in the proper control codes to get 
+letter-quality mode and sans serif printing. Press Enter. Assign other actions 
+and control strings in a similar manner.
+
+To select a control string, choose option S from the main menu. Use the up- 
+and down-arrow keys to position the cursor on the correct control code, then 
+press Enter. (Pressing the correct letter also moves the cursor to the 
+appropriate entry.)
+
+To ensure that your control codes work as they should, PPRIMER.BAS lets you 
+type in a text string to test your setup. Text strings must begin with the 
+ASCII pound sign (#); otherwise the program doesn't recognize the information 
+as a text string. The text must not include commas.
+
+To use the text string to test your printer-control codes, first send the 
+control string to the printer; then send the text string. PPRIMER.BAS strips 
+off the initial pound signs and sends the text to the printer, printing it 
+according to the specifications in the control string.
+
+When you're satisfied that your printer is set up properly, quit the program 
+by pressing Q. You then can use the DOS PRINT command to print a file using 
+the correct margin settings, typeface, type size, and so on. You can also 
+print from within application programs that do not automatically re-initialize 
+the printer when they load. If you're trying to print from an application that 
+performs its own printer setup, read the application's manual for directions 
+on how to disable this feature.
+
+For further information on PPRIMER.BAS and QBasic programming as it relates to 
+PPRIMER.BAS, see "Programming From A to Z" (DRG #5, page 56), "The Importance 
+of Good Thinking" (DRG #6, November 1992, page 61), "Building a Solid 
+Foundation" (DRG #7, January 1993, page 57), and "Understanding the Keys to 
+QBasic" (DRG #8, March 1993, page 51).

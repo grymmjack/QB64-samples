@@ -1,0 +1,1 @@
+This program demonstrates (i) linear interpolation to create a curve between points, (ii) a relaxation algorithm to "smooth over" a curve to remove sharp edges, and (iii) plotting with anti-aliasing.

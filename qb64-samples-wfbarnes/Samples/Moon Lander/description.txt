@@ -1,0 +1,4 @@
+Lunar Lander based on a 1974 program running on a DEC PDP/11 with GT40 vector display terminal at the University of Alberta.  Initially written in QB4.5 (hence the convoluted code to save space), upgraded to use some QB64 features.  Updated May 15, 2020 -  More effects (at warp speeds) and cookies!
+
+Controls:
+The multifarious keyboard controls are given by pressing F1 (Help) when the program is run.

@@ -1,0 +1,42 @@
+'  CLEAN.BAS by George Kaiser
+'  Copyright (C) 1993 DOS Resource Guide
+'  Published in Issue #13, January 1994, page 7
+'  Simplifies deleting unwanted files from your hard drive
+BEGIN:
+CLS
+CHDIR "C:\"
+LINE INPUT "Enter file type to delete: "; FILE$
+IF FILE$ = "" THEN SYSTEM
+FILE$ = UCASE$(FILE$)
+IF FILE$ = "COM" OR FILE$ = "EXE" OR FILE$ = "SYS" THEN BEEP: GOTO BEGIN
+IF FILE$ = "" THEN END
+CLS
+KILL$ = "FIND " + CHR$(34) + "." + FILE$ + CHR$(34) + "/I"
+REDIRECT$ = ">C:\HOLDFILE"
+CLS
+PRINT "Searching for "; FILE$; " FILES"
+SHELL "CHKDSK/V|" + KILL$ + REDIRECT$
+CLS
+SHELL "TYPE C:\HOLDFILE | MORE"
+COLOR 15
+PRINT
+PRINT "Delete the above files (Y/N)?"
+DO
+CHOICE$ = INKEY$
+CHOICE$ = UCASE$(CHOICE$)
+LOOP UNTIL CHOICE$ = "Y" OR CHOICE$ = "N"
+IF CHOICE$ = "Y" GOTO DELETE
+KILL "HOLDFILE": GOTO BEGIN
+DELETE:
+OPEN "C:\HOLDFILE" FOR INPUT AS #1
+DO UNTIL EOF(1)
+LINE INPUT #1, KILLFILE$
+KILL KILLFILE$
+LOOP
+CLOSE
+KILL "HOLDFILE"
+COLOR 7
+GOTO BEGIN
+
+
+

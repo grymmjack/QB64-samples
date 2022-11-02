@@ -1,0 +1,1 @@
+[This] is an image converter that takes a picture a small block at a time and finds the "best fit" domino for that space. (The woman is Heather Thomas.)

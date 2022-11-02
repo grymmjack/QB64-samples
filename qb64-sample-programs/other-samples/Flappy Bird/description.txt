@@ -1,0 +1,10 @@
+' -----------------------------------------------
+' QB64 FlappyBird Clone by Terry Ritchie 02/28/14
+'
+' This program was created to accompany the QB64
+' Game Programming course located at:
+' http://www.qb64sourcecode.com
+'
+' You may not sell or distribute this game! It
+' was made for instructional purposes only.
+' -----------------------------------------------

@@ -1,0 +1,3 @@
+I am working on a project (can't tell you what it is yet) and have decided to draw my own boxes (MessageBox, InputBox, etc.)
+
+So, here is a sample of a QuitBox:

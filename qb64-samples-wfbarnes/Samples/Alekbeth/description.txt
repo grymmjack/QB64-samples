@@ -1,0 +1,3 @@
+Description:	"Akalabeth: World of Doom" is the predecessor of the Ultima series of role playing games
+Modifications:	i. CLEAR statement commented
+                ii. "END"s instead of restarting to avoid problems associated with (i)

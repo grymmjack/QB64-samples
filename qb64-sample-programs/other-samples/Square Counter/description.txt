@@ -1,0 +1,6 @@
+PRINT "    This is a program used to count squares or rectangles for"
+PRINT " people who don't want to waste their time on solving annoying"
+PRINT " long puzzles where they need to count how many squares or rectangles"
+PRINT " are in a certain grid. NOTE: A 3 by 3 grid don't just have 9, it also"
+PRINT " count the bigger ones (like the grid itself). So a 3 by 3 have 14"
+PRINT " squares in total."

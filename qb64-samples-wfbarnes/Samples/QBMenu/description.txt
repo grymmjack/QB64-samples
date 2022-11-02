@@ -1,0 +1,176 @@
+'  QBMENU.BAS
+'    by John Wolfskill
+'  Copyright (C) 1994 DOS World Magazine
+'  Published in Issue #16, July 1994, page 40
+
+***************************************************************************** 
+ 
+ QBMENU.BAS 
+   by John Wolfskill 
+ Copyright (C) 1994 DOS World Magazine 
+ Published in Issue #16, July 1994, page 40 
+ 
+QBMENU.BAS is a QBasic utility that writes batch file menus for you.  The  
+program prompts you to type in your menu items and the commands for starting  
+each item, then creates a batch file from the data you provide. If you need  
+to edit a menu created earlier, you simply run QBMENU again, make the  
+necessary changes in the program's data-entry screen, and save the revised  
+menu. You may change a menu's color scheme by answering a few on-screen  
+prompts. 
+ 
+Getting Started 
+--------------- 
+Because QBMENU.BAS's color capability relies on DOS's ANSI.SYS program, your  
+first step should be ensuring that ANSI.SYS is loaded during start-up. If  
+your current CONFIG.SYS doesn't load ANSI.SYS, add this line to your  
+CONFIG.SYS file: 
+ 
+DEVICE=C:\DOS\ANSI.SYS 
+ 
+(If ANSI.SYS resides in a directory other than C:\DOS, change the command  
+accordingly.) Then, press Ctrl-Alt-Del to restart your computer, which will  
+activate ANSI.SYS. 
+ 
+To run the QBMENU.BAS from the DOS command line, change to the directory  
+containing QBMENU.BAS, then type: 
+ 
+QBASIC /RUN QBMENU 
+ 
+ 
+QBMENU immediately writes a small data file called MM.DAT to the current  
+directory. This file contains the default menu items and optional parameters  
+(more about these settings later). 
+ 
+Afterwards, the main display appears. The leftmost column, which contains the  
+letters A through L, labels the 12 menu entries. You must supply two pieces  
+of information for each menu entry: the prompt you want in the batch menu and  
+the command used to carry out the specified action. 
+ 
+Entering Data 
+------------- 
+To start filling in the blanks, press E to enter text-entry mode. A flashing  
+cursor appears within a highlighted bar. The first time you run QBMENU, a  
+tilde (~) appears in the leftmost position of each of the 12 menu-entry  
+fields. This character marks the field as empty. Because QBMENU ignores blank  
+items when it creates your batch menu, you must type over the tilde when  
+filling in a menu entry. 
+ 
+To fill in menu item A, position the cursor over the tilde in the topmost  
+field, and type the message you want to appear in the menu. If, for example,  
+you want selection A to start Windows, you might type START MICROSOFT  
+WINDOWS. 
+ 
+To fill in the command for this entry, press the Tab key to move the cursor  
+to the command field on the righthand side of the display. Then, type in a  
+command such as this one: 
+ 
+C:\WINDOWS\WIN 
+ 
+(Including a full pathname is required, and helps DOS find the program  
+without having to search through the directories listed in your path  
+command.) The command you supply may include switches or filenames, as this  
+one does: 
+ 
+C:\PW\PW.COM /C MYFILE.TXT 
+ 
+Press Tab to return the highlight bar to the menu-item field and press the  
+down-arrow key or Enter to highlight item B. Continue adding menu items and  
+commands until all the options you want your batch file menu to display are  
+listed. (It's best to work from top to bottom, being sure not to leave blank  
+lines between entries.) When you're through, press Esc to exit text-entry  
+mode. 
+ 
+Because your batch file menu must provide a means of exiting to the DOS  
+prompt, QBMENU automatically adds an Exit option to the end of your list. For  
+example, if the last item in your list is item D, QBMENU adds Exit as item E  
+when it writes the batch file to disk. 
+ 
+To delete an item, press E (if you aren't in text-entry mode), move the  
+highlight bar to the desired menu item, press Home to move the cursor to the  
+field's leftmost character, and press the tilde key to overwrite the first  
+character in the item name. After pressing Esc to exit text-entry mode, press  
+P to activate the Purge option. QBMENU  deletes the unwanted item and its  
+associated command, then rearranges the remaining items to fill the gap. 
+ 
+Looks Do Count 
+-------------- 
+Next you must tell QBMENU how you want your menu to look: the menu's title,  
+the message used to prompt users to make a selection, foreground and  
+background colors for text, the screen's background color, and the type of  
+box in which the menu is displayed. You also control how long the program  
+waits before making a selection and which menu entry is the default  
+selection. 
+ 
+To see how this part of QBMENU works, press the letter O to choose Options  
+from the menu bar at the bottom of the display. The program lists the numbers  
+zero through seven, indicating which color corresponds to each value. Then,  
+the program displays a series of prompts, pausing for you to respond after  
+each one. Press Enter to accept the current text or value, or type in new  
+text or a new value and press Enter. 
+ 
+The border-preference option controls the boxing method used to display your  
+menu. If you choose Y, QBMENU displays the entire menu in a framed box. If  
+you choose N, each menu item appears in its own box; the boxes aren't framed. 
+ 
+When choosing a time-out value, you must supply a value between zero and 99  
+seconds. A value of zero tells the batch file to display the menu on screen  
+until the user makes a selection. If you specify any other permissible value  
+and no choice is made before the stated time elapses, the batch file selects  
+the default menu entry. If you want the program to select the Exit option (to  
+exit to DOS) by default, enter a value that is one letter higher than the  
+last item in your list. For instance, if the last item in your list is D,  
+type the letter E. (When you view the batch-file menu, you'll see that the  
+default menu entry is marked with an asterisk.) 
+ 
+Creating the Batch File 
+----------------------- 
+When you press C to create your menu batch file in QBMENU, the following  
+program prompts will appear on screen: 
+ 
+   Current batch filename is: MENU.BAT 
+   Enter new name for batch file (omit file extension): 
+ 
+   Current batch file pathname is: C:\ 
+   Enter new pathname for batch file: 
+ 
+As before, press Enter to accept the current settings, or type in new  
+information and press Enter. Filenames may contain eight or fewer characters;  
+don't type a file extension. 
+ 
+After creating your customized batch menu, QBMENU displays another prompt: 
+ 
+   Add MENU.BAT to your AUTOEXEC.BAT file (Y/N)?" 
+ 
+Press Y if you want QBMENU to add the name of your batch file to the end of  
+your AUTOEXEC.BAT. Press N if you want to start the batch file from the DOS  
+prompt, or you wish to add the entry to your AUTOEXEC.BAT file yourself. If  
+you choose Y, remember that QBMENU doesn't search your AUTOEXEC.BAT file to  
+determine if the lines that start MENU.BAT are already there. In subsequent  
+sessions, select N to prevent QBMENU from adding the lines to your  
+AUTOEXEC.BAT more than once. 
+ 
+To manually add to AUTOEXEC.BAT the lines that start MENU.BAT, load the file  
+into DOS's Edit program or another editor that saves files in ASCII format.  
+Then, add the following lines to the end of AUTOEXEC.BAT: 
+ 
+CD C:\DOS 
+CALL MENU.BAT 
+CD C:\ 
+ 
+(This assumes that your batch file is named MENU.BAT and that it resides in  
+your C:\DOS directory.) 
+ 
+After QBMENU writes the batch file to disk, the main menu returns. Press S to  
+save the current menu data to disk and exit the program. Press A if you want  
+to exit the program without saving the changes you've made. 
+ 
+To view your batch-file menu, exit the QBasic editor and return to the DOS  
+prompt. Log onto the directory where QBMENU stored your batch menu, and then  
+type the name of the batch file. If you're not satisfied with the way the  
+menu looks, run QBMENU again, changing and viewing the results of your  
+alterations until you're happy with it. 
+ 
+QBMENU.BAS is meant to create only one menu, so if you believe you need more  
+than one, you'll need to give the MM.DAT file another name to avoid changing  
+the first menu's parameters when you go to create the second menu. If you  
+want to change the first menu, change its .DAT filename back to MM.DAT. 

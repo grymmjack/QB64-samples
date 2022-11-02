@@ -1,0 +1,5 @@
+'    Release: MINI-CLOCK by Folker Fritz
+'    Version: 1.0 (1999-10-31)
+'     Status: 100% Freeware
+'      EMail: folker.fritz@gmx.de
+'   Homepage: http://www.quickbasic.6x.to

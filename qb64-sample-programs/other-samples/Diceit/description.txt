@@ -1,0 +1,4 @@
+'This is a very simple dice game. I am still new at Qb so please humor me.
+'Also, Thank You for downloading this!
+
+REM Created 8/27/04

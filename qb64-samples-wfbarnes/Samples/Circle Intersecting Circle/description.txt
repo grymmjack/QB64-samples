@@ -1,0 +1,1 @@
+Here we present two (equivalent) methods for calculating the intersection points between any two circles.

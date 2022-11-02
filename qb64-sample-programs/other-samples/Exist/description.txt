@@ -1,0 +1,30 @@
+'  EXIST.BAS  
+'     by Phil Weber
+'  Copyright (c) 1993 DOS Resource Guide Magazine
+'  Published in Issue #13, January 1994, page 58.
+
+==============================================================================
+
+-----------
+ EXIST.BAS
+-----------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later.
+
+WHAT EXIST.BAS DOES:
+This program demonstrates how an assembly language routine can be used within 
+a QBasic program to perform a task that QBasic does not perform very 
+efficiently on its own.  This simple example program determines whether or not 
+a particular file exists.  You can use the technique in your own QBasic 
+programs.  See DOSVER.BAS on this diskette for another example of how assembly 
+language can be incorporated into a QBasic program.
+
+USING EXIST.BAS:
+To load the program in QBasic, type QBASIC EXIST.BAS (using path names if 
+necessary) at the DOS prompt. Then run the program by selecting the Start 
+option in QBasic's Run menu, or press Shift-F5. The program then prompts you 
+to enter the name of a file. After you do this, EXIST.BAS prints a message 
+telling you whether or not the file exists in the current directory.
+
+For further details on EXIST.BAS, see "Supercharge Your QBasic Programs" (DRG 
+#13, January 1994, page 58).

@@ -1,0 +1,51 @@
+' QWIPE.BAS
+'   by Vincent D. O'Connor
+' Copyright (C) 1994 DOS Resource Guide
+' Published in Issue #17, September 1994 issue, page 67
+
+***************************************************************************** 
+ 
+ QWIPE.BAS 
+   by Vincent D. O'Connor 
+ Copyright (C) 1994 DOS Resource Guide 
+ Published in Issue #17, September 1994 issue, page 67 
+ 
+There are times when you may want to delete files so that they can't be  
+recovered using utilities such as the MS-DOS Undelete command. To do this,  
+you can use this program, QWIPE.BAS. It not only deletes files but also  
+overwrites the files' contents. Although QWIPE.BAS isn't as fancy as The  
+Norton Utilities' WipeFile program and other similar commercial software, it  
+works well. 
+ 
+To run the program from the DOS command line, change to the directory  
+containing QWIPE.BAS, then type: 
+ 
+QBASIC /RUN QWIPE 
+ 
+ 
+The program starts by asking you the name of the file you want to wipe out;  
+it then overwrites that file in 2K blocks.  The program actually overwrites  
+the file three times, using zeros, then 1s, and then a random character.  
+Finally, QWIPE.BAS changes the name of the overwritten file to a single  
+letter, which makes it virtually impossible for a nosy user to utilize the  
+filename to determine what the file contained originally. 
+ 
+You may customize the program in several ways. You may change the characters  
+used to overwrite the file, for one thing. To speed the file-wiping process,  
+you may also reduce the number of times the file is overwritten to fewer than  
+three. 
+ 
+Because my hard disk is organized into 2K allocation units (also known as  
+clusters), I set the block size to 2048 bytes (2K). If your hard drive is  
+large, and you've partitioned it as one drive, the cluster size may be 4096  
+bytes (4K) or larger. 
+ 
+You should change the size of the block to match your hard disk's. (To find  
+out the block size, run CHKDSK and read the line that tells the number of  
+bytes in each allocation unit.)  Then, wherever 2048 appears in the program,  
+change it to the size of allocation units for your hard drive. 
+ 
+Finally, you may modify the program to read the file after the last write is  
+carried out, which lets you verify that the file contains only the overwrite  
+characters. If you do this, you should also add an error message that gives  
+you the option of wiping the file again. 

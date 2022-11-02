@@ -1,0 +1,1 @@
+This is a ray tracer I've been working on for the past 6 years. Well, on and off of course :) It's still a beta version. 43Kb. Bet this won't run in QB45.

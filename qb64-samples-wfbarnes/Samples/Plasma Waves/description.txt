@@ -1,0 +1,5 @@
+'Wavy with Plama.bas for QB64 fork (B+=MGA) 2017-05-05
+' Wavy with Plasma Treatment.bas SmallBASIC 0.12.9 (B+=MGA) 2017-05-03
+' from: animated circles started by Admin at SdlBasic 2017-05-03
+' I added Plasma treatment and spacebar  changer
+Oh, I guess I was experimenting with circle drawing here too.

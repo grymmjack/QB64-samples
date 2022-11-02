@@ -1,0 +1,12 @@
+PRINT "      Canibal Gopher inc. presents "
+PRINT "          Drug Runner 3d demo"
+PRINT "           Demo version 1.00      "
+PRINT "        Copyright Kevin B. Kohler "
+PRINT "                  1998            "
+PRINT
+PRINT
+PRINT "            Arrow keys move"
+PRINT
+PRINT "              Escape quits"
+PRINT
+PRINT "              Space jumps"

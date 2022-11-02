@@ -1,0 +1,7 @@
+ '================
+ 'PIPES.BAS v1.0
+ '================
+ 'Connect the pipes puzzle game
+ 'Coded by Dav for QB64-GL 1.5 in SEP/2021
+     
+ 'NOTE: Formally called MazeConnect Prototype on the forum.

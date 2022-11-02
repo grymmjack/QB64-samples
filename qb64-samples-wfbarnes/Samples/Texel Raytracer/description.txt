@@ -1,0 +1,1 @@
+Pure QB Realtime Raytracer Demo. Translated to/optimized for QB by Antoni Gual agual@eic.ictnet.es. The original was written in C by Texel, a Spanish demo coder [...]

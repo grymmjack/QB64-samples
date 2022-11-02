@@ -1,0 +1,1 @@
+Converts between ASCII value and character.

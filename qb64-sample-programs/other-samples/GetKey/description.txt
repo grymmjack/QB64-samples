@@ -1,0 +1,59 @@
+1 '   SETKEYS.BAS
+2 '   Copyright (c) 1993 DOS Resource Guide
+3 '   Published in The Essential Guide to DOS Special Issue
+4 '   October 1993, page 54
+
+1 '   SETKEYS.BAS
+2 '   Copyright (c) 1993 DOS Resource Guide
+3 '   Published in The Essential Guide to DOS Special Issue
+4 '   October 1993, page 54
+
+==============================================================================
+
+-------------
+ SETKEYS.BAS
+ GETKEY.BAS
+-------------
+SYSTEM REQUIREMENTS: The version of QBasic that comes with DOS 5 or later, 
+Microsoft Quick Basic 4.x, or GW-Basic.
+
+WHAT THE PROGRAMS DO:
+Used in combination, GETKEY.BAS and SETKEYS.BAS let you set the startup status 
+of your computer's Num Lock, Caps Lock, and Scroll Lock keys in one operation. 
+GETKEY.BAS displays a number that represents the current status of your 
+keyboard. SETKEYS.BAS uses that number to set your keyboard status.
+
+USING GETKEY.BAS AND SETKEYS.BAS
+Set the Caps Lock, Num Lock, and other keys the way you want them to be at 
+bootup. Load GETKEY.BAS by typing QBASIC GETKEY.BAS (using path names if 
+necessary) at the DOS prompt. Then run the program by selecting the Start 
+option in QBasic's Run menu, or press Shift-F5. Write down the keyboard status 
+number displayed by the program. Then load SETKEYS.BAS and scroll to line 20 
+of the listing. Substituting the status number for xxx. Save the modified 
+program by choosing the File menu's Save option. Run SETKEYS.BAS using the 
+procedure outlined above.
+
+To run SETKEYS.BAS automatically when you boot the computer, add a line such 
+as the following to your AUTOEXEC.BAT file:
+
+QBASIC /RUN C:\DRGSL1\SETKEYS.BAS
+
+(If you keep SETKEYS.BAS in a directory other than C:\DRGSL1, change the line 
+above to refer to the directory where SETKEYS.BAS is actually stored.)
+
+If you have a Basic compiler, such as Microsoft's Quick Basic, delete line 30 
+and run the compiled SETKEYS.EXE file directly from AUTOEXEC.BAT.
+
+Note: On most PC keyboards, the status indicator lights for the lock keys will 
+change to reflect the settings made by running SETKEYS.BAS. The lights on some 
+older keyboards, however, may be out of synch with the actual keyboard status.
+
+For further information, see the "Key States" tip in DRG's Essential Guide to 
+DOS Special Issue (October 1993, page 54).
+
+==============================================================================
+
+------------
+ GETKEY.BAS
+------------
+See the instructions for SETKEYS.BAS

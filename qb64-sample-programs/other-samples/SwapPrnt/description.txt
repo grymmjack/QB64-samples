@@ -1,0 +1,31 @@
+'  SWAPPRNT.BAS
+'  Swaps LPT1 and LPT2
+'     by John Wolfskill
+'
+'  Copyright (C) 1993 DOS Resource Guide
+'  Published in Issue # 13, January 1994, page 66
+
+==============================================================================
+
+--------------
+ SWAPPRNT.BAS
+--------------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later, or Microsoft Quick Basic 
+4.x.
+
+WHAT SWAPPRNT.BAS DOES:
+This program is for use on computers that have two printer ports, LPT1 and 
+LPT2.  When you run SWAPPRNT.BAS, it swaps the two printer ports, so that 
+information that would normally go to the printer attached to LPT1 now goes to 
+LPT2, and vice versa.
+
+USING SWAPPRNT.BAS:
+To load the program, type QBASIC SWAPPRNT.BAS (using path names if necessary) 
+at the DOS prompt. Then run the program by selecting the Start option in 
+QBasic's Run menu, or press Shift-F5.  The program produces no visible output, 
+but the printer ports will now be swapped.  To swap them back to their 
+original configuration, simply run SWAPPRNT.BAS again.
+
+For further details on SWAPPRNT.BAS, see "Q & A" (DRG #13, January 1994, page 
+66).

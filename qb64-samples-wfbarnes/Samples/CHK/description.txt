@@ -1,0 +1,49 @@
+'  CHK.BAS by Paul Lamar
+'  Copyright (C) 1993 DOS Resource Guide
+'  Published in Issue #12, November 1993, page 9
+'  Runs CHKDSK if it has not been run during the current month
+
+==============================================================================
+
+---------
+ CHK.BAS
+---------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later, or Microsoft Quick Basic 
+4.x.
+
+WHAT CHK.BAS DOES:
+When CHK.BAS is run, it in turn runs DOS's CHKDSK program, but only if CHKDSK 
+has not already been run by CHK.BAS during the current month.  CHKDSK is a DOS 
+program that you should run periodically to check the status of your hard 
+drive.  CHK.BAS helps you automate this task.
+
+USING CHK.BAS:
+When CHK.BAS is run, it examines a file called DATE.OLD, which contains the 
+date on which CHK.BAS was last run.  CHK.BAS creates DATE.OLD the first time 
+you run it, then updates DATE.OLD with the current date each time it runs.  If 
+CHK.BAS determines that the month has changed since it last ran, the program 
+then runs DOS's CHKDSK program, adding the output of CHKDSK to a file called 
+DISK.DAT.  Then CHK.BAS displays the contents of DISK.DAT so you can see if 
+any problems were found when CHKDSK checked your hard drive.
+
+If CHK.BAS finds that the month has NOT changed since it last ran, nothing is 
+displayed, although you will see the screen flash briefly as QBasic processes 
+CHK.BAS.
+
+The best way to use CHK.BAS is to insert it into your AUTOEXEC.BAT file so it 
+will run automatically each time your computer is turned on or restarted.  
+Assuming that CHK.BAS is stored on your hard drive in the C:\DRGSL1 directory, 
+add the following line to your AUTOEXEC.BAT file:
+
+QBASIC /RUN C:\DRGSL1\CHK.BAS
+
+If you have stored CHK.BAS in another directory, you must change the line 
+above to refer to the directory where CHK.BAS is actually located.
+
+You can also load and run CHK.BAS manually.  To load the program, type QBASIC 
+CHK.BAS (using path names if necessary) at the DOS prompt. Then run the 
+program by selecting the Start option in QBasic's Run menu, or press Shift-F5.
+
+For further details on CHK.BAS, see "Spontaneous CHKDSK" (Tips From Readers, 
+DRG #12, November 1993, page 9).
