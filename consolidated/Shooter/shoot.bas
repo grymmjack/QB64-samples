@@ -1,4 +1,8 @@
 $NoPrefix
+$If VERSION > 3.1.0 Then
+    $Unstable:Midi
+    $MidiSoundFont:Default
+$End If
 DefLng A-Z
 
 $Resize:Smooth

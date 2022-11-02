@@ -20,14 +20,14 @@ Option Base 1
 ' All arrays should be static by default. Allocate dynamic array using ReDim
 '$Static
 ' This allows the executable window & it's contents to be resized.
-' $Resize:Smooth
+$Resize:Smooth
 Title "Space 64"
 '-----------------------------------------------------------------------------------------------------
 
 Dim asteroidx(100), asteroidy(100), asteroidspeed(100)
 
 Screen 13
-FullScreen SquarePixels ', Smooth
+FullScreen SquarePixels , Smooth
 
 Dim y As Integer, x As Integer
 Dim c As Integer, k As Integer
