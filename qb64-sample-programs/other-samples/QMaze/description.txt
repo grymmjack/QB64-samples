@@ -1,1 +1,0 @@
-Maze puzzle game by Microsoft.

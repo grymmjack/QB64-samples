@@ -1,1 +1,0 @@
-This can be used to draw a line with a specified lineWidth.

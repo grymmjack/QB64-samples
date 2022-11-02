@@ -1,1 +1,0 @@
-Basic "turtle graphics" setup. Draws a Koch snowflake by default.

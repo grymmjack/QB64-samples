@@ -1,1 +1,0 @@
-Averages 5 test scores.

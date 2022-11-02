@@ -1,1 +1,0 @@
-fractal, mandelbrot, 9 lines

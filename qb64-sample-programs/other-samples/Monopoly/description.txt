@@ -1,1 +1,0 @@
-A text-graphics monopoly board with some functionality.

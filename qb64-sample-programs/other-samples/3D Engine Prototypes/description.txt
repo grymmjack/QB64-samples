@@ -1,1 +1,0 @@
-Various experiments in software 3D graphics. Warning: Uses no functions or subs!

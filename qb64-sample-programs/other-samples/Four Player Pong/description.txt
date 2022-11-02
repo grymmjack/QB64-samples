@@ -1,1 +1,0 @@
-Four-player pong game.

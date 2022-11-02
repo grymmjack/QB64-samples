@@ -1,1 +1,0 @@
-Use ascii man to avoid traps.

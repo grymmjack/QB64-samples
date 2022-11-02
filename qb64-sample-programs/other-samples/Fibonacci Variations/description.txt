@@ -1,1 +1,0 @@
-The Fibonacci sequence is "seeded" with the golden ratio, but what if we change that?

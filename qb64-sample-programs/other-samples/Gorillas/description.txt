@@ -1,1 +1,0 @@
-Gorilla-based artillery game by Microsoft.

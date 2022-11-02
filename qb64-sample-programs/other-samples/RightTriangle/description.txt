@@ -1,3 +1,0 @@
-'Program (c) T.A.Giles - Mar 2001
-'Right Angle Triangle Solver v 1.1
-'640 x 480 graphics resolution

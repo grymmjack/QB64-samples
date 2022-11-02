@@ -1,3 +1,0 @@
-'This is my starfield entry hacked down to 25 lines
-'It needs a pretty fast computer...looks OK on my 1.5 GHz
-'JKC 2003

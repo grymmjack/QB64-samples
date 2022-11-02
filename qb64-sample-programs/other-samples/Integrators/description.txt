@@ -1,1 +1,0 @@
-Demonstrates the efficacy of various integration methods in physics.

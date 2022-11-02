@@ -1,6 +1,0 @@
-'************************************************
-'*
-'*  This program simulates a swinging motion
-'*
-'*                              "04 PMG
-'*

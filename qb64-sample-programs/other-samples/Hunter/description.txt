@@ -1,1 +1,0 @@
-Maze hunter game by Microsoft.

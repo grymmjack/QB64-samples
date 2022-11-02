@@ -1,1 +1,0 @@
-This is an interactive (mouse-driven) demo that calculates the intersection of any line with any circle.
