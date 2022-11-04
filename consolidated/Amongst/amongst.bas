@@ -7,7 +7,7 @@ gameVersion = 3
 
 $Let DEBUGGING = FALSE
 $If DEBUGGING = TRUE Then
-        $CONSOLE
+    $CONSOLE
 $End If
 
 Const True = -1, False = 0
@@ -518,7 +518,7 @@ Do
                 Select Case char$
                     Case Chr$(22) 'ctrl+v
                         myMessage$ = myMessage$ + _Clipboard$
-                    Case " " To "z"
+                    Case " " TO "z"
                         myMessage$ = myMessage$ + char$
                     Case Chr$(8)
                         If Len(myMessage$) Then
@@ -715,7 +715,7 @@ End Sub
 
 Sub db (text$)
     $If DEBUGGING = TRUE Then
-            _ECHO text$
+        _ECHO text$
     $Else
         Dim dummy$
         dummy$ = text$
@@ -1187,7 +1187,7 @@ Sub settingsScreen
             Dim char$
             char$ = InKey$
             Select Case char$
-                Case " " To "z"
+                Case " " TO "z"
                     If Len(dummyPlayer.name) < 20 Then dummyPlayer.name = dummyPlayer.name + char$
                 Case Chr$(8)
                     If Len(dummyPlayer.name) Then
