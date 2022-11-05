@@ -1,12 +1,26 @@
+'-----------------------------------------------------------------------------------------------------
+' These are some metacommands and compiler options for QB64 to write modern & type-strict code
+'-----------------------------------------------------------------------------------------------------
+' This will disable prefixing all modern QB64 calls using a underscore prefix.
 $NoPrefix
-
+' Whatever indentifiers are not defined, should default to signed longs (ex. constants and functions).
 DefInt A-Z
+' All variables must be defined.
+Option Explicit
+' All arrays must be defined.
+Option ExplicitArray
+' Array lower bounds should always start from 1 unless explicitly specified.
+' This allows a(4) as integer to have 4 members with index 1-4.
 Option Base 1
-
+' This game erases arrays and does not redim them. So we use static arrays instead.
+'$Static
+' This allows the executable window & it's contents to be resized.
 $Resize:Smooth
 Title "Reversi"
+'-----------------------------------------------------------------------------------------------------
 
-Const FALSE = 0, TRUE = Not FALSE
+Const FALSE = 0
+Const TRUE = Not FALSE
 Const QUIT = 113
 Const UP = 72
 Const DOWN = 80
@@ -48,6 +62,8 @@ Dim Shared GS As GameStatus, smode As Integer
 Dim Shared GG(8, 8) As GameGrid, GBoard As Integer
 Dim Shared COMP As Integer, HUMAN As Integer, BG As Integer
 Dim Shared GP(8, 8, 8) As Integer, GW(8, 8) As Integer
+Dim vmode As Integer
+Dim k As String
 
 On Error GoTo BadMode
 
@@ -57,12 +73,11 @@ Do
     Screen smode
 Loop Until vmode = TRUE
 
-AllowFullScreen SquarePixels , Smooth
-
 If smode = 0 Then
     Cls
-    Locate 10, 15: Print "No graphics screen mode available; cannot run REVERSI.BAS"
+    Locate 10, 15: Print "No graphics screen mode available; cannot run Reversi"
 Else
+    AllowFullScreen SquarePixels , Smooth
     GS.stat = START
     GS.dLevel = "Novice"
     While GS.stat <> QUIT
@@ -77,9 +92,9 @@ Else
                 Do
                     DisplayMsg "You have no valid moves.  Select pass."
                     Do
-                        a$ = InKey$
-                    Loop Until a$ <> ""
-                Loop Until Asc(Right$(a$, 1)) = PASS
+                        k = InKey$
+                    Loop Until k <> ""
+                Loop Until Asc(Right$(k, 1)) = PASS
                 Line (0, 420)-(640, 447), 3, BF
                 GS.mDisplay = FALSE
                 GS.stat = COMP
@@ -110,7 +125,8 @@ Resume Next
 
 System 0
 
-Function CheckPath (i, IBound, IStep, j, JBound, JStep, Opponent)
+Function CheckPath (i As Integer, IBound As Integer, IStep As Integer, j As Integer, JBound As Integer, JStep As Integer, Opponent As Integer)
+    Dim As Integer done, count
 
     done = FALSE
     While (i <> IBound Or j <> JBound) And Not done
@@ -130,10 +146,11 @@ Function CheckPath (i, IBound, IStep, j, JBound, JStep, Opponent)
         End If
     Wend
     CheckPath = count
-
 End Function
 
 Sub ComputerMove
+    Dim As Integer BestMove, row, col, value, BestRow, BestCol
+
     BestMove = -99
     For row = 1 To 8
         For col = 1 To 8
@@ -177,21 +194,20 @@ Sub ComputerMove
                 End If
                 If value > BestMove Then
                     BestMove = value
-                    bestrow = row
-                    bestcol = col
+                    BestRow = row
+                    BestCol = col
                 End If
             End If
         Next col
     Next row
 
-    TakeBlocks bestrow, bestcol, COMP
+    TakeBlocks BestRow, BestCol, COMP
     GS.stat = HUMAN
-
 End Sub
 
 Sub DisplayHelp
-
-    Dim a$(1 To 18)
+    Dim As Integer i
+    Dim a(1 To 18) As String, k As String
 
     a$(1) = "The object of Reversi is to finish the game with more of your red"
     a$(2) = "circles on the board than the computer has of blue (Monochrome"
@@ -228,29 +244,30 @@ Sub DisplayHelp
         Print a$(i)
     Next i
     Locate 23, 25: Print "- Press any key to continue -"
-    Sleep: a$ = InKey$
+    Sleep: k = InKey$
     DrawGameBoard
     DrawCursor GS.curRow, GS.curCol
-
 End Sub
 
-Sub DisplayMsg (a$)
+Sub DisplayMsg (a As String)
+    Dim As Integer sLen, LX
 
-    slen = Len(a$)
-    LX = (640 - 8 * (slen + 8)) / 2
+    sLen = Len(a$)
+    LX = (640 - 8 * (sLen + 8)) / 2
     Line (LX - 1, 420)-(640 - LX, 447), 0, B
     If GBoard = 85 Then
         Paint (LX + 10, 430), Chr$(85), 0
     Else
         Paint (LX + 10, 430), GBoard, 0
     End If
-    Locate 23, (80 - slen) / 2
-    Print a$;
+    Locate 23, (80 - sLen) / 2
+    Print a;
     GS.mDisplay = TRUE
-
 End Sub
 
-Sub DrawCursor (row, col)
+Sub DrawCursor (row As Integer, col As Integer)
+    Dim As Integer lc
+
     If GG(row, col).nTake > 0 Then
         Circle (GG(row, col).cx, GG(row, col).cy), 15, HUMAN
         Circle (GG(row, col).cx, GG(row, col).cy), 14, HUMAN
@@ -264,6 +281,7 @@ Sub DrawCursor (row, col)
 End Sub
 
 Sub DrawGameBoard
+    Dim As Integer i, row, col
 
     Line (0, 0)-(640, 480), BG, BF
     Line (239, 15)-(400, 40), 0, B
@@ -317,11 +335,9 @@ Sub DrawGameBoard
             End If
         Next col
     Next row
-
 End Sub
 
-Sub DrawGamePiece (row, col, GpColor)
-
+Sub DrawGamePiece (row As Integer, col As Integer, GpColor As Integer)
     If GBoard = 85 Then
         Line (232 + col * 40, 33 + row * 40)-(267 + col * 40, 67 + row * 40), 7, BF
         If GpColor <> GBoard Then
@@ -334,19 +350,20 @@ Sub DrawGamePiece (row, col, GpColor)
         Circle (GG(row, col).cx, GG(row, col).cy), 14, GpColor
         Paint (GG(row, col).cx, GG(row, col).cy), GpColor, GpColor
     End If
-
 End Sub
 
 Sub GameOver
-    Scorediff = GS.rScore - GS.bScore
-    If Scorediff = 0 Then
+    Dim As Integer ScoreDiff
+
+    ScoreDiff = GS.rScore - GS.bScore
+    If ScoreDiff = 0 Then
         DisplayMsg "Tie Game"
-    ElseIf Scorediff < 0 Then
+    ElseIf ScoreDiff < 0 Then
         DisplayMsg "You lost by"
-        Print Abs(Scorediff)
+        Print Abs(ScoreDiff)
     Else
         DisplayMsg "You won by"
-        Print Scorediff
+        Print ScoreDiff
     End If
     Do
         GS.stat = Asc(Right$(InKey$, 1))
@@ -355,6 +372,8 @@ Sub GameOver
 End Sub
 
 Sub InitGame
+    Dim As Integer row, col, i, j
+
     Select Case smode
         Case 9:
             HUMAN = 4
@@ -405,7 +424,8 @@ Sub InitGame
     GG(5, 5).player = HUMAN
 End Sub
 
-Sub TakeBlocks (row, col, player)
+Sub TakeBlocks (row As Integer, col As Integer, player As Integer)
+    Dim As Integer i
 
     GG(row, col).player = player
     DrawGamePiece row, col, player
@@ -453,23 +473,24 @@ Sub TakeBlocks (row, col, player)
 
     Locate 17, 7: Print "Your Score:      "; GS.rScore
     Locate 18, 7: Print "Computer Score:  "; GS.bScore
-
 End Sub
 
 Sub UserMove
+    Dim k As String
+    Dim As Integer move
 
     DrawCursor GS.curRow, GS.curCol
     Do
         Do
-            a$ = InKey$
-        Loop Until a$ <> ""
-        move = Asc(Right$(a$, 1))
+            k = InKey$
+        Loop Until k <> ""
+        move = Asc(Right$(k, 1))
         If GS.mDisplay Then
             Line (0, 420)-(640, 447), BG, BF
             GS.mDisplay = FALSE
         End If
         Select Case move
-            Case 71 To 81:
+            Case 71 TO 81:
                 DrawGamePiece GS.curRow, GS.curCol, GG(GS.curRow, GS.curCol).player
                 If move < 74 Then
                     If GS.curRow = BBLOCK Then
@@ -528,10 +549,10 @@ Sub UserMove
                 GS.stat = QUIT
         End Select
     Loop Until GS.stat <> HUMAN And GS.stat <> FMOVE
-
 End Sub
 
-Function ValidMove (Opponent)
+Function ValidMove (Opponent As Integer)
+    Dim As Integer row, col
 
     ValidMove = FALSE
     Erase GP
@@ -576,6 +597,5 @@ Function ValidMove (Opponent)
             End If
         Next col
     Next row
-
 End Function
 
