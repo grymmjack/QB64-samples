@@ -1,0 +1,30 @@
+* UPJOY.TXT 11-05-93 *
+
+UPJOY and BIGGUN are trademarks of BIGGUN International. Other names
+used are trademarks or registered trademarks of their respective holders.
+
+UPJOY for Windows 3.1 supports all joysticks and pedals. Here are some
+of UPJOY's features:
+o  Axis and button mapping, for example, map rudder pedals from X2 to Y1
+   for gas and brakes in auto racing
+o  Sensitivity adjustment
+o  Analog emulation for digital joysticks
+o  Hat trim control and view select for the CH FLIGHTSTICK PRO and
+   ThrustMaster FCS and PFCS
+o  UPJOY can serve up to 4 games simultaneously
+o  The driver interface allows parallel keyboard and joystick support
+o  Fault tolerance: An axis can be unplugged during game play without
+   affecting the remaining axes. If the axis is plugged back in, it starts
+   working again.
+o  Crisp button response
+o  UPJOY's JoyBase can store 32 calibrations and 32 maps
+o  Online help
+
+Note: UPJOY.DRV is NOT compatible with IBMJOY.DRV
+
+If you're a game developer or just curious, you can download the beta
+release of UPJOY 1.0 from CompuServe. UPJOY.ZIP can be found in the
+[Game Design] section of the GAMERS forum. The same file can be
+downloaded from FSFORUM's [Hardware] section.
+
+The production version of UPJOY is NOT free.

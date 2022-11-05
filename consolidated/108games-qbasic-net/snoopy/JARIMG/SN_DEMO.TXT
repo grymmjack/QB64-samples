@@ -1,0 +1,82 @@
+Well...you see it's an early demo of this game.
+Controls:
+
+LEFT         / STICK LEFT  - Go left
+CTRL + LEFT  / BUTTON 1    - Jump left
+RIGHT        / STICK RIGHT - Go right
+CTRL + RIGHT / BUTTON 2    - Jump right
+UP           / STICK FW    - Jump
+Q                          - Quit
+
+(Try to run against a wall;)
+
+Better Demos will come soon. ! THIS IS DEMO-VERSION 3.3 !
+(remember this number to see if a new demo-version is available)
+(OR MAYBE THE FIRST COMPLETE VERSION !!!)
+
+*DEMO*-VERSION 1.0
+
+Snoopy can run left and right.
+Snoopy can run against walls.
+
+*DEMO*-VERSION 1.1                              
+
+Snoopy can eat bones. 
+Snoopy can jump upwards.
+
+*DEMO*-VERSION 2.0
+
+Snoopy can jump left & right.
+
+*DEMO*-VERSION 2.1
+
+Fixed some bugs
+
+*DEMO*-VERSION 2.2
+
+Snoopy has got his hut.
+
+*DEMO*-VERSION 3.0
+
+Snoopy sleeps if you don't press any key for 30 secs.
+Multiscreenlevels included.
+First nasties included (with lovely graphs ;)
+Pseudo-Joystick-Control.
+
+*DEMO*-VERSION 3.1
+
+Those nice little mice ...
+
+*DEMO*-VERSION 3.2
+
+Fixed more bugs.
+Snoopy has got more lives.
+
+*DEMO*-VERSION 3.3
+
+More nice little mice...
+
+*DEMO*-VERSION 4.0
+
+Adlib-Soundcard supported. Not good, but supported.
+Intro.
+
+---------------------------------------------------------------------------
+The game may be a little slow on PCs < 486, I can't try it, I've got just a
+486/100/12. Please mail me the bugs you find (Except that Snoopy sometimes
+eats the earth. I've seen it already.)
+If it's TOO slow, disable the "playbg"command.
+
+Any q's to :thomasalh@aol.com
+            thomasalh@geocities.com
+{{{http://www.geocities.com/SiliconValley/Heights/3982}}}
+---------------------------------------------------------------------------
+THANKS TO:
+YOU for playing the game
+The one who wrote the adlib-soundcard-player (unknown).
+A.A.Efros for using his melodys until I've made my own
+
+NO THANKS TO:
+Florian Schr”der.
+My online-bill.
+---------------------------------------------------------------------------
