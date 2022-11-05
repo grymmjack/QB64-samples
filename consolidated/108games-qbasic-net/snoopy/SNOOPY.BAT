@@ -1,1 +1,0 @@
-@qbasic/run snoopy

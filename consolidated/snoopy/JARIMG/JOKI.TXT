@@ -1,0 +1,100 @@
+* JOKI.TXT 11-05-93 *
+
+Joki(TM) 2.1 is a Free Soft Toy from BIGGUN International
+
+BIGGUN, Joki and UPJOY are trademarks of BIGGUN International
+Windows is a trademark of Microsoft(R) Corporation
+
+EVERYBODY MAY COPY AND DISTRIBUTE JOKI.COM VERSION 2.1 ONLY IF THIS
+JOKI.TXT AND UPJOY.TXT IS INCLUDED. IF YOU MANUFACTURE JOYSTICKS, FOR
+EXAMPLE, YOU MAY SHIP JOKI WITH YOUR JOYSTICKS. ONLINE NETWORKS, DISK
+VENDORS AND MAGAZINES MAY ALSO DISTRIBUTE JOKI. JOKI 2.1 IS PUBLIC
+DOMAIN.
+
+Q: What is Joki?
+A: Joki does joystick-keyboard emulation on the BIOS level, enabling you to
+play some 'keyboard only' games (usually those written in BASIC), with
+your joystick. Joki works for the 1986 version of SOPWITH and improves
+joystick performance in PARATROOPER. Actually, there are lots of older
+games out there that are Joki compatible.
+
+Q: Where is Joki's new feature?
+A: Internally, Joki 2.1 is faster than version 2.0
+
+Operating instructions
+======================
+To play the 1986 version of SOPWITH with your joystick, type the
+following command:
+JOKI >SOP.BAT
+Joki prompts you for the keys for stick left, right, forward, backward
+and Button 1 and 2. Note that versions of SOPWITH from BMB Compuscience
+after 1986 aren't Joki compatible.
+
+The next list of keys works nicely:
+Stick left:     ',' (comma)     = nose up
+Stick right:    '/' (slash)     = nose down
+Stick forward:  'x'             = increase rpm
+Stick backward: '\' (backslash) = decrease rpm
+Button 1:       ' ' (space)     = fire
+Button 2:       'b'             = bomb
+
+Joki saves the keys to the SOP.BAT hI-score program (using DOS
+redirection). Next time you want to play SOPWITH, just type SOP to
+program your joystick.
+
+For QBASIC NIBBLES.BAS shipped with some versions of DOS, you'll program
+your joystick with the arrow keys, and press Space and 'y' for the
+buttons.
+
+Keep in mind that some games, like SOPWITH, respond only to lowercase or
+uppercase letters, so you must set Caps Lock and Num Lock accordingly
+before creating a hI-score program.
+
+If a game has less than six controls, you can press any irrelevant keys
+for the unused joystick states. You can edit a hI-score program and
+change values to zero to disable those functions. Example:
+JOKI 0 0 0 0 0 0
+disables all functions.
+
+To remove Joki from memory, you have to reset your computer.
+Alternatively, you can run Joki from a DOS session under Windows.
+
+If you toggle your computer's turbo after Joki is loaded, you'll have to
+re-center your joystick by pressing Ctrl-Button 1, i.e., hold down the
+Control key on the keyboard, then press Button 1 which is usually the
+joystick's trigger. Your game will pause until you release the Ctrl
+key.
+
+Here are some other settings that can be adjusted on-the-fly:
+Switch off/on       Ctrl-Button 2
+Repeat rate         Left Shift-Button 1 (FFFast, Slow, Standard)
+Analog sensitivity  Left Shift-Button 2 (changes the dead zone)
+
+Joki defaults to Standard repeat rate and High Analog sensitivity.
+
+Note: In general, the default settings work fine. The FFFast repeat rate
+can overwhelm some games, like SOPWITH, causing it to freeze.
+
+When you run a hI-score program, Joki displays its current settings.
+
+Programmer's Guide
+==================
+Joki works for games that poll the keyboard for input, for example:
+...
+150 A$ = INKEY$ :REM A$ = INKEY$
+160 IF A$ <> "" THEN GOSUB 2000 :REM GOSUB 2000 IF A$ <> ""
+...
+If a game continues to read keys while there are keys waiting, the game
+will freeze 'til the cows come home if Joki's FFFast repeat rate is
+selected.
+
+Congratulations, you're now an official Joki gamer.
+
+
+
+
+
+
+
+
+
