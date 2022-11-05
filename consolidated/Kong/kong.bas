@@ -1,3 +1,5 @@
+'CHDIR ".\samples\thebob\kong"
+
 '****************************************************************************'
 '____________________________________________________________________________
 '____________________________________________________________________________'
@@ -24,8 +26,42 @@
 '
 '-------------------- ...KING-KONG vs MIGHTY JOE YOUNG ----------------------'
 '------- (Freeware)--Unique elements Copyright (C) 2005 by Bob Seguin -------'
+'------------------------ email: BOBSEG@sympatico.ca ------------------------'
+'
+'************** NOTE: Mouse routines will not work with QB7.1 ***************'
 
 DefInt A-Z
+
+DECLARE FUNCTION InitMOUSE ()
+
+DECLARE SUB MouseSTATUS (LB, RB, MouseX, MouseY)
+DECLARE SUB ShowMOUSE ()
+DECLARE SUB HideMOUSE ()
+DECLARE SUB LocateMOUSE (x, y)
+DECLARE SUB FieldMOUSE (x1, y1, x2, y2)
+DECLARE SUB PauseMOUSE (LB, RB, MouseX, MouseY)
+DECLARE SUB ClearMOUSE ()
+DECLARE SUB MouseDRIVER (LB, RB, MX, MY)
+
+DECLARE FUNCTION ControlPANEL ()
+DECLARE FUNCTION Computer ()
+DECLARE FUNCTION BananaTOSS ()
+
+DECLARE SUB SetPALETTE ()
+DECLARE SUB DrawSCREEN ()
+DECLARE SUB StartUP ()
+DECLARE SUB DoAPES ()
+DECLARE SUB PlayGAME ()
+DECLARE SUB TopMENU (InOUT)
+DECLARE SUB Instructions ()
+DECLARE SUB Sliders (Value, Slider)
+DECLARE SUB EndGAME ()
+DECLARE SUB Interval (Duration!)
+DECLARE SUB Fade (InOUT)
+DECLARE SUB SetWIND ()
+DECLARE SUB Explode (What)
+DECLARE SUB ApeCHUCKLE (Which)
+DECLARE SUB PrintSCORE (Ape, Score)
 
 Const Degree! = 3.14159 / 180
 Const g# = 9.8
@@ -42,13 +78,13 @@ Dim Shared Buildings(1 To 8, 1 To 2)
 Dim Shared NumBOX(1 To 300)
 
 Def Seg = VarSeg(NumBOX(1))
-BLoad "KongNUMS.BSV", VarPtr(NumBOX(1))
+BLoad "kongnums.bsv", VarPtr(NumBOX(1))
 Def Seg = VarSeg(LilBOX(1))
-BLoad "KongWIND.BSV", VarPtr(LilBOX(1))
+BLoad "kongwind.bsv", VarPtr(LilBOX(1))
 Def Seg = VarSeg(Banana(1))
-BLoad "KongBNNA.BSV", VarPtr(Banana(1))
+BLoad "kongbnna.bsv", VarPtr(Banana(1))
 Def Seg = VarSeg(SliderBOX(1))
-BLoad "KongSLDR.BSV", VarPtr(SliderBOX(1))
+BLoad "kongsldr.bsv", VarPtr(SliderBOX(1))
 Def Seg
 
 For n = 1 To 8
@@ -61,23 +97,43 @@ Dim Shared KongX, KongY, YoungX, YoungY, Ape
 Dim Shared KScore, YScore, Item, LBldg, RBldg
 Dim Shared NumPLAYERS, CompTOSS
 
+Dim Shared MouseDATA$
+
+'Create and load MouseDATA$ for CALL ABSOLUTE routines
+Data 55,89,E5,8B,5E,0C,8B,07,50,8B,5E,0A,8B,07,50,8B,5E,08,8B
+Data 0F,8B,5E,06,8B,17,5B,58,1E,07,CD,33,53,8B,5E,0C,89,07,58
+Data 8B,5E,0A,89,07,8B,5E,08,89,0F,8B,5E,06,89,17,5D,CA,08,00
+MouseDATA$ = Space$(57)
+For i = 1 To 57
+    Read h$
+    Hexxer$ = Chr$(Val("&H" + h$))
+    Mid$(MouseDATA$, i, 1) = Hexxer$
+Next i
+
+Moused = InitMOUSE
+If Not Moused Then
+    Print "Sorry, cat must have got the mouse."
+    Sleep 2
+    System
+End If
+
 Restore PaletteDATA
 For n = 1 To 48
     Read FadeBOX(n)
 Next n
 
 Screen 12
-_FullScreen
 Out &H3C8, 0
 For n = 1 To 48
     Out &H3C9, 0
 Next n
+
 Randomize Timer
 
 Do
     PlayGAME
 Loop
-
+ 
 End
 
 PaletteDATA:
@@ -87,19 +143,6 @@ Data 42,42,50,55,55,63,0,0,0,43,27,20
 Data 8,8,21,0,63,21,63,55,25,63,63,63
 
 Sub ApeCHUCKLE (Which)
-
-    If Which = 1 Then
-        LaffX! = (KongX / 320) - 1
-    Else
-        LaffX! = (YoungX / 320) - 1
-    End If
-    If LaffX! < -1 Then LaffX! = -1
-    If LaffX! > 1 Then LaffX! = 1
-
-    Laff& = _SndOpen("KONGlaff.ogg", "SYNC,VOL")
-    Rem _SNDBAL Laff&, LaffX!
-    _SndPlay Laff&
-
 
     Select Case Which
         Case 1 'Kong chuckle
@@ -129,8 +172,7 @@ Sub ApeCHUCKLE (Which)
 
 End Sub
 
-Function BananaTOSS 'tosses banana
-    Shared BananaHIT
+Function BananaTOSS
 
     t# = 0
     If Ape = 1 Then
@@ -164,7 +206,7 @@ Function BananaTOSS 'tosses banana
     Next Index
 
     Index = 1 'Initialize banana index
-    _SndPlayFile "KONGbnna.ogg", 1
+
     Do 'banana toss loop
 
         Interval .001
@@ -292,7 +334,6 @@ Function BananaTOSS 'tosses banana
         End If
 
     Loop Until x# < 3 Or x# > 627
-    Explode 4
 
     If x# >= 0 And x# <= 627 Then 'erase banana to end toss sequence -------
         If y# >= 40 Then
@@ -333,7 +374,7 @@ Function Computer
         If KongX > FinalX Then
             CompSPEED = CompSPEED * .9
         Else
-            CompSPEED = CompSPEED * 1.12
+            CompSPEED = CompSPEED * 1.2
             If YoungX - FinalX < 100 Then 'Oops! Tall building
                 CompANGLE = CompANGLE + 10
             Else
@@ -382,7 +423,7 @@ Function ControlPANEL
     Shared Player1ANGLE#, Player2ANGLE#
 
     Select Case MouseX
-        Case 147 To 246
+        Case 147 TO 246
             If MouseY > 441 And MouseY < 463 Then
                 If LB = -1 Then
                     Speed# = MouseX - 147
@@ -398,7 +439,7 @@ Function ControlPANEL
                     Sliders Sp, 1
                 End If
             End If
-        Case 385 To 499
+        Case 385 TO 499
             If MouseY > 423 And MouseY < 463 Then
                 If LB = -1 Then
                     Angle# = 494 - MouseX
@@ -414,7 +455,7 @@ Function ControlPANEL
                     Sliders An, 2
                 End If
             End If
-        Case 305 To 335
+        Case 305 TO 335
             If MouseY > 423 And MouseY < 452 Then
                 If LB = -1 Then
                     HideMOUSE
@@ -456,16 +497,15 @@ Function ControlPANEL
 
 End Function
 
-
 Sub DoAPES
 
     KongX = LBldg * 80 - 59
     KongY = Buildings(LBldg, 2) - 42
     YoungX = RBldg * 80 - 59
     YoungY = Buildings(RBldg, 2) - 42
-
+ 
     Def Seg = VarSeg(Box(1))
-    BLoad "KongMJY.BSV", VarPtr(Box(1))
+    BLoad "kongmjy.bsv", VarPtr(Box(1))
     Def Seg
     ApeINDEX = 1
     Get (YoungX, YoungY)-(YoungX + 38, YoungY + 42), YoungBOX(5000)
@@ -478,7 +518,7 @@ Sub DoAPES
     Next Index
 
     Def Seg = VarSeg(Box(1))
-    BLoad "KongKONG.BSV", VarPtr(Box(1))
+    BLoad "kongkong.bsv", VarPtr(Box(1))
     Def Seg
     ApeINDEX = 1
     Get (KongX, KongY)-(KongX + 38, KongY + 42), KongBOX(5000)
@@ -494,7 +534,7 @@ Sub DoAPES
     Put (YoungX, YoungY), YoungBOX(2251), PSet
 
     Def Seg = VarSeg(Box(1))
-    BLoad "KongEXPL.BSV", VarPtr(Box(1))
+    BLoad "kongexpl.bsv", VarPtr(Box(1))
     Def Seg
 
 End Sub
@@ -507,7 +547,7 @@ Sub DrawSCREEN
     FileCOUNT = 0
     For y = 0 To 320 Step 160
         FileCOUNT = FileCOUNT + 1
-        FileNAME$ = "KongSCR" + LTrim$(Str$(FileCOUNT)) + ".BSV"
+        FileNAME$ = "kongscr" + LTrim$(Str$(FileCOUNT)) + ".bsv"
         BLoad FileNAME$, VarPtr(Box(1))
         Put (0, y), Box(), PSet
     Next y
@@ -526,7 +566,7 @@ Sub DrawSCREEN
     x = 0
     Def Seg = VarSeg(Box(1))
     For n = 1 To 8
-        FileNAME$ = "KongBLD" + LTrim$(Str$(Buildings(n, 1))) + ".BSV"
+        FileNAME$ = "kongbld" + LTrim$(Str$(Buildings(n, 1))) + ".bsv"
         BLoad FileNAME$, VarPtr(Box(1))
         Height = 165 + Fix(Rnd * 160)
         If n = LBldg And Height > 264 Then Height = 264
@@ -548,7 +588,7 @@ Sub DrawSCREEN
     Next x
 
     'Foreground building silhouettes
-    BLoad "KongFBLD.BSV", VarPtr(Box(1))
+    BLoad "kongfbld.bsv", VarPtr(Box(1))
     Def Seg
     Put (0, 362), Box(7000), And
     Put (0, 362), Box()
@@ -564,38 +604,20 @@ End Sub
 Sub Explode (What)
     Static BlastCOUNT
 
-    BlastX! = (x# / 320) - 1
-    If BlastX! < -1 Then BlastX! = -1
-    If BlastX! > 1 Then BlastX! = 1
-
-    b1& = _SndOpen("KONGExp1.ogg", "SYNC,VOL")
-    b2& = _SndOpen("KONGExp2.ogg", "SYNC,VOL")
-    b3& = _SndOpen("KONGExp3.ogg", "SYNC,VOL")
-
     Select Case What
-        Case 1 'Kong hit
-            Rem _SNDBAL b2&, BlastX!
-            _SndPlay b2&
+        Case 1
             Ex = x# - 26: Ey = y# - 26
             GoSub FirstBLAST
             Ex = KongX - 12: Ey = KongY - 12
             Dx = KongX - 4: Dy = KongY + 20
-        Case 2 'Young hit
-            Rem _SNDBAL b2&, BlastX!
-            _SndPlay b2&
+        Case 2
             Ex = x# - 26: Ey = y# - 26
             GoSub FirstBLAST
             Ex = YoungX - 12: Ey = YoungY - 12
             Dx = YoungX - 4: Dy = YoungY + 20
-        Case 3 'Building hit
-            Rem _SNDBAL b3&, BlastX!
-            _SndPlay b3&
+        Case 3
             Ex = x# - 26: Ey = y# - 26
             Dx = x# - 20: Dy = y# - 20
-        Case 4 'Off-screen explosion
-            Rem _SNDBAL b1&, BlastX!
-            _SndPlay b1&
-            Exit Sub
     End Select
 
     If Ex + 62 > 639 Then Ex = 639 - 62
@@ -625,7 +647,7 @@ Sub Explode (What)
     Exit Sub
 
     Damage:
-    Open "KongCRTR.DAT" For Input As #2
+    Open "kongcrtr.dat" For Input As #2
     Input #2, Wdth, Dpth
     BlastCOUNT = BlastCOUNT + 1
     Select Case BlastCOUNT
@@ -659,7 +681,6 @@ Sub Explode (What)
     If Ex < 0 Then Ex = 0
     If Ex + 62 > 639 Then Ex = 577
     Get (Ex, Ey)-(Ex + 62, Ey + 62), ExplosionBACK()
-    _SndPlayFile "Explosion.ogg"
     For Index = 1 To 6181 Step 2060
         Interval 0
         Wait &H3DA, 8
@@ -708,12 +729,27 @@ Sub Fade (InOUT)
 
 End Sub
 
+Sub FieldMOUSE (x1, y1, x2, y2)
+
+    MouseDRIVER 7, 0, x1, x2
+    MouseDRIVER 8, 0, y1, y2
+
+End Sub
 
 Sub HideMOUSE
 
-    _MouseHide: MouseDRIVER
+    LB = 2
+    MouseDRIVER LB, 0, 0, 0
 
 End Sub
+
+Function InitMOUSE
+
+    LB = 0
+    MouseDRIVER LB, 0, 0, 0
+    InitMOUSE = LB
+
+End Function
 
 Sub Instructions
 
@@ -723,7 +759,7 @@ Sub Instructions
 
     For n = 1 To 3
         Def Seg = VarSeg(Box(1))
-        FileNAME$ = "KongINS" + LTrim$(Str$(n)) + ".BSV"
+        FileNAME$ = "kongins" + LTrim$(Str$(n)) + ".bsv"
         BLoad FileNAME$, VarPtr(Box(1))
         Def Seg
         HideMOUSE
@@ -737,7 +773,7 @@ Sub Instructions
     ShowMOUSE
 
     Def Seg = VarSeg(Box(1))
-    BLoad "KongEXPL.BSV", VarPtr(Box(1))
+    BLoad "kongexpl.bsv", VarPtr(Box(1))
     Def Seg
 
     Exit Sub
@@ -746,7 +782,7 @@ Sub Instructions
     Do
         MouseSTATUS LB, RB, MouseX, MouseY
         Select Case MouseX
-            Case 400 To 424
+            Case 400 TO 424
                 If MouseY > 154 And MouseY < 168 Then
                     If Arrow = 0 Then
                         HideMOUSE
@@ -776,7 +812,6 @@ Sub Instructions
                 End If
         End Select
         If Arrow = 1 And LB = -1 Then
-            _SndPlayFile "KONGtick.ogg", 1
             Put (400, 154), Box(25000), PSet
             ClearMOUSE
             Arrow = 0
@@ -799,20 +834,31 @@ Sub Interval (Length!)
 End Sub
 
 DefInt A-Z
+Sub LocateMOUSE (x, y)
 
-Sub MouseDRIVER
+    LB = 4
+    MX = x
+    MY = y
+    MouseDRIVER LB, 0, MX, MY
 
-    While _MouseInput: Wend
+End Sub
+
+Sub MouseDRIVER (LB, RB, MX, MY)
+
+    Def Seg = VarSeg(MouseDATA$)
+    Mouse = SAdd(MouseDATA$)
+    Call Absolute(LB, RB, MX, MY, Mouse)
 
 End Sub
 
 Sub MouseSTATUS (LB, RB, MouseX, MouseY)
 
-    MouseDRIVER
-    LB = _MouseButton(1)
-    RB = _MouseButton(2)
-    MouseX = _MouseX
-    MouseY = _MouseY
+    LB = 3
+    MouseDRIVER LB, RB, MX, MY
+    LB = ((RB And 1) <> 0)
+    RB = ((RB And 2) <> 0)
+    MouseX = MX
+    MouseY = MY
 
 End Sub
 
@@ -822,7 +868,6 @@ Sub PauseMOUSE (OldLB, OldRB, OldMX, OldMY)
     Shared Key$
 
     Do
-        _Limit 60
         Key$ = UCase$(InKey$)
         MouseSTATUS LB, RB, MouseX, MouseY
     Loop Until LB <> OldLB Or RB <> OldRB Or MouseX <> OldMX Or MouseY <> OldMY Or Key$ <> ""
@@ -830,18 +875,14 @@ Sub PauseMOUSE (OldLB, OldRB, OldMX, OldMY)
 End Sub
 
 Sub PlayGAME
-    Static Started, Counnt
+    Static Started
     Shared Player1SPEED#, Player2SPEED#
     Shared Player1ANGLE#, Player2ANGLE#
 
     DrawSCREEN
     DoAPES
     CompTOSS = 0
-    If Started = 0 Then
-        Street& = _SndOpen("Kongstam.ogg", "SYNC")
-        _SndPlayFile "Kong theme.ogg", 1
-        _SndLoop Street&
-    End If
+
     Fade 2
 
     Do
@@ -880,26 +921,27 @@ Sub PlayGAME
             Sliders Int(Player2SPEED#), 1
             Sliders Int(Player2ANGLE#), 0
         End If
+        If NumPLAYERS = 1 And Ape = 2 Then LocateMOUSE 319, 440
         ShowMOUSE
 
         Do
-            If NumPLAYERS = 1 And Ape = 2 Then
-                Select Case Computer 'Call to Computer FUNCTION
-                    Case -1: Exit Do 'Change player
-                    Case 1 'Reset screen
-                        Fade 1
-                        HideMOUSE
-                        Player1SPEED# = 0: Player2SPEED# = 0
-                        Player1ANGLE# = 0: Player2ANGLE# = 0
-                        Exit Sub
-                    Case 2: GoSub EndGAME 'Game over
-                End Select
-            Else
-                MouseSTATUS LB, RB, MouseX, MouseY
-                Select Case MouseY
-                    Case 18 To 27
-                        TopMENU 1
-                    Case 424 To 462
+            MouseSTATUS LB, RB, MouseX, MouseY
+            Select Case MouseY
+                Case 18 TO 27
+                    TopMENU 1
+                Case 424 TO 462
+                    If NumPLAYERS = 1 And Ape = 2 Then
+                        Select Case Computer 'Call to Computer FUNCTION
+                            Case -1: Exit Do 'Change player
+                            Case 1 'Reset screen
+                                Fade 1
+                                HideMOUSE
+                                Player1SPEED# = 0: Player2SPEED# = 0
+                                Player1ANGLE# = 0: Player2ANGLE# = 0
+                                Exit Sub
+                            Case 2: GoSub EndGAME 'Game over
+                        End Select
+                    Else
                         Select Case ControlPANEL 'Call to ControlPANEL FUNCTION
                             Case -1: Exit Do 'Change player
                             Case 1 'Reset screen
@@ -910,40 +952,28 @@ Sub PlayGAME
                                 Exit Sub
                             Case 2: GoSub EndGAME 'Game over
                         End Select
-                    Case Else
-                        If Item Then TopMENU 0
-                End Select
-            End If
-            Counnt = Counnt + 1
-            If Counnt = 32000 Then Counnt = 0
-            If Int(Rnd * 10000) = 0 Then
-                If Int(Rnd * 600) = 0 Then
-                    Select Case Counnt Mod 3
-                        Case 0: _SndPlayFile "KONGhrn1.ogg", 1
-                        Case 1: _SndPlayFile "KONGhrn2.ogg", 1
-                        Case 2: _SndPlayFile "KONGcar.ogg", 1
-                    End Select
-                End If
-            End If
+                    End If
+                Case Else
+                    If Item Then TopMENU 0
+            End Select
         Loop
+
     Loop
 
     Exit Sub
 
     EndGAME:
-    _SndPlayFile "KONGvict.ogg", 1
     Def Seg = VarSeg(Box(1))
     If KScore = 3 Then
-        BLoad "KongWINK.BSV", VarPtr(Box(1))
+        BLoad "kongwink.bsv", VarPtr(Box(1))
     Else
-        BLoad "KongWINY.BSV", VarPtr(Box(1))
+        BLoad "kongwiny.bsv", VarPtr(Box(1))
     End If
     Def Seg
     wx = (640 - Box(1)) / 2
     Wait &H3DA, 8
     Wait &H3DA, 8, 8
     Put (wx, 160), Box(), PSet
-    _SndStop Street&
     a$ = Input$(1)
     If a$ = Chr$(13) Then
         Started = 0
@@ -1002,9 +1032,8 @@ Sub SetWIND
 End Sub
 
 Sub ShowMOUSE
-
-    _MouseShow: MouseDRIVER
-
+    LB = 1
+    MouseDRIVER LB, 0, 0, 0
 End Sub
 
 Sub Sliders (Value, Slider)
@@ -1058,27 +1087,28 @@ End Sub
 Sub StartUP
 
     Def Seg = VarSeg(Box(1))
-    BLoad "Kong1PL2.BSV", VarPtr(Box(1))
+    BLoad "kong1pl2.bsv", VarPtr(Box(1))
     Def Seg
     Get (209, 160)-(430, 237), Box(12000)
     Put (209, 160), Box(), PSet
+    LocateMOUSE 340, 190
     ShowMOUSE
 
     Do
         MouseSTATUS LB, RB, MouseX, MouseY
         Select Case MouseX
-            Case 244 To 270
+            Case 244 TO 270
                 If Item = 0 Then
                     Select Case MouseY
-                        Case 193 To 205
+                        Case 193 TO 205
                             If LB Then
                                 ButtonX = 245: ButtonY = 194
                                 GoSub Clicker
                                 NumPLAYERS = 2
-                                FileNAME$ = "KongOPEN.BSV"
+                                FileNAME$ = "kongopen.bsv"
                                 GoSub LoadFILE
                             End If
-                        Case 209 To 221
+                        Case 209 TO 221
                             If LB Then
                                 ButtonX = 245: ButtonY = 210
                                 GoSub Clicker
@@ -1088,7 +1118,7 @@ Sub StartUP
                             End If
                     End Select
                 End If
-            Case 340 To 366
+            Case 340 TO 366
                 If Item = 1 Then
                     If MouseY > 209 And MouseY < 221 Then
                         If LB Then
@@ -1106,14 +1136,14 @@ Sub StartUP
     ShowMOUSE
     Item = 0
     Def Seg = VarSeg(Box(1))
-    BLoad "KongEXPL.BSV", VarPtr(Box(1))
+    BLoad "kongexpl.bsv", VarPtr(Box(1))
     Def Seg
 
     Exit Sub
 
     LoadFILE:
     Def Seg = VarSeg(Box(1))
-    BLoad FileNAME$, VarPtr(Box(21500))
+    BLoad LCase$(FileNAME$), VarPtr(Box(21500))
     Def Seg
     HideMOUSE
     Put (209, 160), Box(21500), PSet
@@ -1121,7 +1151,6 @@ Sub StartUP
     Return
 
     Clicker:
-    _SndPlayFile "KONGtick.ogg", 1
     HideMOUSE
     Get (ButtonX, ButtonY)-(ButtonX + 24, ButtonY + 10), Box(20000)
     Line (ButtonX, ButtonY)-(ButtonX + 24, ButtonY + 10), 8, B
@@ -1142,14 +1171,14 @@ Sub TopMENU (InOUT)
     If InOUT = 0 Then GoSub DeLIGHT: Exit Sub
 
     Select Case MouseX
-        Case 20 To 72
+        Case 20 TO 72
             If Item <> 1 Then
                 GoSub DeLIGHT
                 MX1 = 20: MX2 = 72
                 GoSub HiLIGHT
                 Item = 1
             End If
-        Case 594 To 616
+        Case 594 TO 616
             If Item <> 2 Then
                 GoSub DeLIGHT
                 MX1 = 594: MX2 = 616
@@ -1161,7 +1190,6 @@ Sub TopMENU (InOUT)
     End Select
 
     If LB = -1 And Item Then
-        _SndPlayFile "KONGtick.ogg", 1
         Select Case Item
             Case 1: GoSub DeLIGHT: Instructions
             Case 2: GoSub DeLIGHT: System
@@ -1193,4 +1221,3 @@ Sub TopMENU (InOUT)
     Return
 
 End Sub
-
