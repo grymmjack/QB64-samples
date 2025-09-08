@@ -1,0 +1,79 @@
+' SCREEN.BAS
+'   by Vincent D. O'Connor
+' Copyright (C) 1994 DOS World
+' Published in Issue #18, November 1994, page 60
+'
+'This program may be run in DOS 5.0 and above's QBasic
+'or compiled with QuickBasic 4.0 or later, or with
+'Visual Basic for DOS.
+
+***************************************************************************** 
+ 
+ SCREEN.BAS 
+   by Vincent D. O'Connor 
+ Copyright (C) 1994 DOS World 
+ Published in Issue #18, November 1994, page 60 
+ 
+When you need to display text during the execution of a batch file, you have  
+several options. Unfortunately, the most common method, using the ECHO  
+command, is slow and doesn't produce professional-looking results. Using the  
+TYPE command speeds things up a bit, but the results are even less attractive  
+than those achieved with ECHO. 
+ 
+There is a third method: creating text screens that are small programs. Not  
+only does this approach let you display text extremely quickly, but it also  
+produces better-looking screens. To create executable screens, I developed a  
+program called SCREEN.BAS. You may run the program in QBasic or compile the  
+code with Visual Basic for DOS or QuickBasic 4.0 or later. 
+ 
+To run the program from the DOS command line using QBasic, change to the  
+directory containing SCREEN.BAS, then type: 
+ 
+QBASIC /RUN SCREEN 
+ 
+ 
+When you run the program, it asks you to type the name of the screen you want  
+to create. Supply a legal filename; if you forget to include an extension or  
+use something other than COM, the program corrects your error. If you press  
+Enter without entering any filename, SCREEN.BAS uses the default filename,  
+SCREEN.COM. 
+ 
+If the filename you enter is too long, an error message is displayed, and you  
+must retype the name. Be careful, though; if you use a filename that already  
+exists, SCREEN.BAS overwrites the original file. 
+ 
+Next, the program asks you to type as many as 24 lines of text, each of which  
+may contain as many as 80 characters. If you exceed that limit, only the  
+first 80 characters are included in the screen program. You may not use a  
+dollar sign ($), but you may include any other printable characters,  
+including  extended characters such as box-drawing characters. (A dollar sign  
+causes problems because DOS interprets it as an end-of-string marker when  
+executing the screen program.) To produce a blank line, simply press the  
+spacebar once and press Enter. 
+ 
+When you complete each line, the program asks whether to center, left-justify  
+(start text at the left margin), or right-justify the text you supplied.  
+Press C to center text, R to make it right-justified, or L to make it left- 
+justified. Press Enter. 
+ 
+To indicate that you've reached the end of your screen message, press Enter  
+(without pressing the spacebar). When you do this, SCREEN.BAS creates the  
+executable screen and asks whether you want to create another one. Press Y to  
+create another screen, or N to end the program. 
+ 
+To put your screen programs to work in a batch file, simply call them as you  
+would any other program. For instance, if you created a warning screen,  
+called WARNING.COM, that lets the user know whether a file of a particular  
+name already exists, you might use the following lines in your batch file: 
+ 
+IF EXIST %1 GOTO ITSTHERE 
+. 
+.place other commands here 
+. 
+:ITSTHERE 
+WARNING 
+ 
+SCREEN.BAS certainly offers an improvement over ECHO and TYPE, but it isn't  
+perfect. It doesn't let you specify colors or include more than 24 lines of  
+text, for example. Under most circumstances, these shortcomings aren't  
+serious. 

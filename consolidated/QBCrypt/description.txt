@@ -1,0 +1,90 @@
+' QBCRYPT.BAS 1.0
+'   by Chris Stoddard
+' Copyright (C) 1994 DOS Resource Guide
+' Published in Issue #15, May 1994, page 65
+' Additional information in Issue #17, September 1994, page 67
+
+***************************************************************************** 
+ 
+ QBCRYPT.BAS 1.0 
+   by Chris Stoddard 
+ Copyright (C) 1994 DOS Resource Guide 
+ Published in Issue #15, May 1994, page 65 
+ Additional information in Issue #17, September 1994, page 67 
+ 
+If your hard drive contains text files (ASCII files) that you don't wish  
+others to read, then QBCRYPT.BAS can help you protect those files from prying  
+eyes. Its encryption algorithm won't stop someone who is knowledgeable and  
+determined to read your files, but it is sophisticated enough to prevent  
+casual snoops from perusing sensitive information. 
+ 
+To run the program from the DOS command line, change to the directory  
+containing QBCRYPT.BAS, then type: 
+ 
+QBASIC /RUN QBCRYPT 
+ 
+ 
+The program uses QBasic's RND function to render text files unreadable. This  
+function takes a seed number and, using a complex mathematical formula,  
+produces another number, which falls between zero and 1. It then employs the  
+second number as a seed for the next computation. Usually the original seed  
+comes from the system timer, but QBCRYPT.BAS uses the password of your choice  
+as the seed, converting each letter of the password to its ASCII equivalent,  
+adding the ASCII values together, and using the sum to seed the RND function. 
+ 
+Next, each letter's ASCII equivalent is used to produce several dummy numbers  
+to direct the encryption process. This step ensures that only the right  
+letters, used in the correct order, will decipher the file. 
+ 
+Before you use QBCRYPT.BAS, you should be aware of its idiosyncrasies. First  
+of all, it works only with text files, also known as ASCII files.  You should  
+not use QBCRYPT.BAS with .COM, .EXE, or other binary files.  Secondly,  
+because RND uses the numbers it produces to create the next generation of  
+values, you can't decipher a file immediately after encrypting it. Instead,  
+you must exit QBCRYPT.BAS, restart the program, and then decipher the file.  
+If you don't do this, the program's deciphering process fails. 
+ 
+You can use this shortcoming to make it harder to break the encryption. If  
+you have several files to encrypt, encode them one after the other, without  
+exiting the program. When you follow this procedure, anyone trying to break  
+the file must know which group of files you encrypted, the order in which you  
+encrypted them, and what password you used for each file (or whether you used  
+the same password for all the files). 
+ 
+Another quirk you should be aware of is that QBCRYPT.BAS doesn't overwrite  
+the original file; instead it writes a new encrypted version of the file.  
+It's designed to work in this manner so that you won't destroy any of your  
+files inadvertently. 
+ 
+If you want to guarantee the privacy of a file, you must encrypt it and  
+overwrite and then delete the original file. Simply deleting the original  
+file doesn't guarantee privacy, because anyone who has access to a disk  
+editor or an undelete program can recover erased files. 
+ 
+You should be aware of one last feature of QBCRYPT.BAS that may cause some  
+unexpected results. Because an encrypted file's password isn't stored with  
+the encrypted file, the program's deciphering section has no means of  
+reporting that a password you supply during deciphering is incorrect. Thus,  
+if you supply the WRONG password, QBCRYPT.BAS tells you it is deciphering the  
+file, but the file it produces is, in fact, unreadable.  So it's absolutely  
+necessary that you supply the correct password! 
+ 
+If you are willing to make some modifications to QBCRYPT.BAS, you can solve  
+this problem, but at the expense of some flexibility. This simple fix works  
+only if you don't use extended ASCII characters (those with values higher  
+than 127) in your text files. 
+ 
+First, add the following line after line 59 of the program (the line that  
+reads IF x < 1 THEN x = ((x + 255) - 32)): 
+ 
+IF X > 127 THEN GOTO WRONGKEY 
+ 
+Then add these lines to the end of the program: 
+ 
+WRONGKEY: 
+  LOCATE 15, 1: PRINT "WARNING INCORRECT PASSWORD !!!" 
+  PRINT "DECIPHERING PROCESS ABORTED !!" 
+  SLEEP 3 
+  CLOSE 
+  KILL NAME$ 
+  GOTO BEGIN 

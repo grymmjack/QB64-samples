@@ -1,0 +1,42 @@
+' PRINTSCR.BAS
+'      Demonstration of how to use QBasic's SCREEN Function to print the
+'      contents of a program's text screen display.
+
+'  Copyright (C) 1995 DOS World. All Rights Reserved.
+
+***************************************************************************** 
+ 
+ PRINTSCR.BAS 
+ Copyright (C) 1995 DOS World 
+ 
+The purpose of PRINTSCR.BAS is to demonstrate a handy subroutine called  
+PrintScreen that you may want to incorporate into your own programs.  When  
+you call PrintScreen, it sends the contents of the current screen display to  
+your printer. 
+ 
+To run the program from the DOS command line, change to the directory  
+containing PRINTSCR.BAS, then type: 
+ 
+QBASIC /RUN PRINTSCR 
+ 
+ 
+PRINTSCR.BAS first asks you to specify how many lines you wish to display and  
+print. Either 25 or 43 lines can be entered, as they are the two most common  
+number of lines displayable by most PCs.  The program then creates a sample  
+screen display using the number of lines you entered, then calls the  
+PrintScreen subroutine to print it. After printing, the subroutine sends a  
+form feed command to eject the page from your printer. 
+ 
+PrintScreen has some limitations.  First, it works only with text screens.  
+Attempting to print graphics screen will yield unpredictable results.  
+Secondly, PrintScreen assumes your screen displays 80 characters per line.  
+The PrintScreen routine requires one parameter, NumLines%, to tell it how  
+many lines to print. 
+ 
+Add this capability to your own programs by typing the PrintScreen subroutine  
+into your listings or by copying and pasting from PRINTSCR.BAS.  Then, any  
+time you want to print the current screen, set NumLines% equal to the number  
+of screen display lines you want to print, then insert a line like the  
+following into your program: 
+ 
+CALL PrintScreen(NumLines%) 

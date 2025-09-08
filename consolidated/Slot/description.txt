@@ -1,0 +1,13 @@
+Copyright (C) 1994-95 DOS Resource Guide/DOS World 
+Published in Issue #17, September 1994, page 66 and 
+              Issue #20, March 1995, page 64 
+ 
+It takes clever programming indeed to create an 
+interesting one-line program. You'll be amazed at 
+how much can be accomplished. 
+
+SLOT.BAS starts you with $1000; when you press any key to enter a $10 bet,  
+the slot machine's three digits spin. When the leftmost and center slots  
+match, the payoff is seven times the matching number. As with "real" one- 
+armed bandits, you win big when all three numbers match: 10 times the square  
+of the matching number, to be exact. 

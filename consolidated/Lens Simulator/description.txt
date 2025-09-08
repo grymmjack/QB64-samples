@@ -1,0 +1,1 @@
+This program simulates light rays passing through a lens with a given index of refraction and concavity. The bent rays emerge to collide with a target (of fixed shape) or pass it by.

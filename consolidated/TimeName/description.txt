@@ -1,0 +1,47 @@
+' ******************************TIMENAME******************************
+'       by Douglas Park
+'    Copyright (c) 1994 DOS Resource Guide
+'    Published in Issue # 14, March 1994, page 59
+' *********************************************************************
+
+==============================================================================
+
+--------------
+ TIMENAME.BAS
+ CFGBAK.BAT
+--------------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later, or Microsoft Quick Basic 
+4.x.
+
+WHAT TIMENAME.BAS DOES:
+TIMENAME.BAS is a utility program that creates unique file names based on the 
+current date and time.  Use it with batch files that must automatically 
+create new file names that aren't currently being used.  Using this program 
+can prevent you from inadvertently copying a file over another file of the 
+same name.  CFGBAK.BAT is an example showing how you might use TIMENAME.BAS 
+in a batch file.
+
+USING TIMENAME.BAS:
+TIMENAME.BAS works by creating a batch file called SETNAME.BAT, which consists 
+of two lines, which look like this:
+
+@ECHO OFF
+SET TIMENAME=3ML02317
+
+The combination of numbers and letters at the end of the second line is the 
+unique file name created by TIMENAME.BAS.  Each time you run TIMENAME.BAS, the 
+file name it inserts into SETNAME.BAT will be different.  When SETNAME.BAT is 
+run, it sets a DOS environment variable called TIMENAME equal to the unique 
+file name.  This file name is then available for use in batch files, as 
+illustrated in CFGBAK.BAT
+
+CFGBAK.BAT shows how you might employ TIMENAME.BAS to create backup copies of 
+files.  It creates backup versions of your CONFIG.SYS and AUTOEXEC.BAT files, 
+storing them in a directory called C:\CFGBAK.  (If you use CFGBAK.BAT to 
+experiment with TIMENAME.BAS, be sure to create the C:\CFGBAK directory before 
+you begin.)  Because the backups have unique file names, they are reasonably 
+safe from being inadvertently overwritten.
+
+For further details on TIMENAME.BAS, see "One of a Kind" (Readers' Queue, DRG 
+#14, March 1994, page 59).

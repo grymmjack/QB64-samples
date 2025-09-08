@@ -1,0 +1,38 @@
+'  CLEAN.BAS by George Kaiser
+'  Copyright (C) 1993 DOS Resource Guide
+'  Published in Issue #13, January 1994, page 7
+'  Simplifies deleting unwanted files from your hard drive
+
+==============================================================================
+
+-----------
+ CLEAN.BAS
+-----------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later, or Microsoft Quick Basic 
+4.x.
+
+WHAT CLEAN.BAS DOES:
+Use this program when you want to delete all files on your hard drive ending 
+with a particular file extension, such as .BAK or .TMP.  You specify the 
+extension, and CLEAN.BAS does the rest.  The program includes safeguards so 
+you won't mistakenly delete .COM, .EXE, or .SYS files.
+
+USING CLEAN.BAS:
+To load the program, type QBASIC CLEAN.BAS (using path names if necessary) at 
+the DOS prompt. Then run the program by selecting the Start option in QBasic's 
+Run menu, or press Shift-F5. The screen will clear, and you will be prompted 
+to enter the file extension of files you wish to delete.  For example, to 
+delete all files with the .BAK extension, enter BAK and press Enter.  The 
+program will search your hard drive for files with the .BAK extension, then 
+display a list of files found and ask if you wish to delete them.  If you 
+answer Y for Yes, the files on the list will be deleted.  If you answer N for 
+No, none of the listed files will be deleted.
+
+Pressing Enter when you are prompted for a file extension ends the program.  
+If you enter COM, EXE, or SYS when prompted, the program beeps and asks for 
+another extension, since under normal circumstances, you would never want to 
+delete files with those extensions.
+
+For further details on CLEAN.BAS, see "Improving on Deleting" (Tips From 
+Readers, DRG #13, January 1994, page 9).

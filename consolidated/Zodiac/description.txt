@@ -1,0 +1,8 @@
+PRINT "Game created by Paulunknown"
+PRINT "Thanks for playing. Please give me some comments on this."
+PRINT "                                                          "
+PRINT "Also, I wish I could get some graphics in this game but I barely know"
+PRINT "the basics of creating pictures. I really need some help on that."
+PRINT "                                                                  "
+PRINT "Feel free to tell a friend about this or send it to them. This is "
+PRINT "probably my first game."

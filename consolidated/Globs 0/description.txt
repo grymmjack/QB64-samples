@@ -1,0 +1,9 @@
+Copyright (C) 1994-95 DOS Resource Guide/DOS World 
+Published in Issue #17, September 1994, page 66 and 
+              Issue #20, March 1995, page 64 
+ 
+It takes clever programming indeed to create an 
+interesting one-line program. You'll be amazed at 
+how much can be accomplished. 
+
+GLOBS.BAS displays ever-changing monochrome "globs" on your screen. 

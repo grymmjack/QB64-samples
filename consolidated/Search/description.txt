@@ -1,0 +1,181 @@
+' SEARCH.BAS
+'   by Antonio and Alfonso De Pasquale
+' Copyright (C) 1994 DOS Resource Guide
+' Published in Issue #15, May 1994, page 56
+
+***************************************************************************** 
+ 
+ SEARCH.BAS 
+   by Antonio and Alfonso De Pasquale 
+ Copyright (C) 1994 DOS Resource Guide 
+ Published in Issue #15, May 1994, page 56 
+ 
+If you program in QBasic, eventually you'll need to work with information  
+that is grouped in arrays, and once you start using arrays, you'll soon want  
+to search them for a given value. Sure, you can produce a printed list so  
+that you can find a telephone number, product code, or address you need  
+desperately. But in the long run, it's probably more efficient to add a  
+search capability to those QBasic programs you use to manage important  
+information. 
+ 
+Don't worry, it's really not as much work as you think, because the linear  
+and binary search functions in this program give you a head start. As  
+written, they let you search a numeric array for a particular value, but you  
+may modify them to find alphanumeric strings instead. Because they are  
+written in QBasic, both functions are easy to alter to your own  
+specifications. 
+ 
+LINEAR AND BINARY SEARCHES 
+-------------------------- 
+A linear search, as its name suggests, uses a FOR...NEXT loop and a  
+conditional statement to compare sequentially the search value to each  
+element in an array. The program takes a particular action if a match is  
+found. 
+ 
+Generally, a linear search is most useful for arrays of fewer than 100  
+elements. If, for example, you have a QBasic program for tracking and  
+maintaining grades for a class of 25 students, a linear search will serve you  
+well. But if you try to use this search method for a lecture class of 200  
+students, the search routine will get bogged down in calculations. For a task  
+of this sort, you need a binary search. 
+ 
+Unlike a linear search, a binary search starts at the middle of the array. If  
+the search value, or argument, is equal to the value stored in the middle of  
+the array, a match exists, and the search ends. If the argument is less than  
+this middle value, the search continues, and the lower half of the array is  
+itself divided into two halves. Conversely, if the argument is greater than  
+the middle value, the search continues by dividing the upper half of the  
+array in half. The algorithm continues to narrow the table and compare the  
+middle value to that of the argument until it finds a match or it determines  
+that no match exists. 
+ 
+Binary searches are incredibly fast, because they can locate a value in a  
+relatively small number of tries. That's why commercial database programs,  
+such as dBASE and FoxPro, incorporate a binary search algorithm into their  
+language and applications. The only problem with binary searches is that you  
+must use them on arrays whose elements are already sorted in ascending or  
+descending order. Performing a binary search on an unsorted array produces  
+incorrect results. (See the program SORT.BAS for two methods that sort the  
+contents of an array in ascending order.) 
+ 
+Now that you know when you might use the two kinds of searches, you're  
+probably anxious to take a closer look at the code for the functions  
+themselves and perhaps play around with it a bit. To give you an idea of how  
+to incorporate the two functions into a listing, we are presenting them in  
+the form of a working QBasic program called SEARCH.BAS. The first part of the  
+listing is included for illustrative purposes only; it asks you to supply a  
+search value and then displays the results of the search. The functions  
+BINARYSEARCH and LINEARSEARCH compose the second part of the program, and  
+they are the subroutines you may want to include in your own programs. 
+ 
+To run the program if SEARCH.BAS is already loaded into QBasic, select the  
+Run menu's Start option or press Shift-F5. You also may run the program from  
+the DOS command line by changing to the directory containing SEARCH.BAS, then  
+typing: 
+ 
+QBASIC /RUN SEARCH 
+ 
+ 
+When you run SEARCH.BAS, the screen clears, and a greeting appears while the  
+program creates an array of 5,000 randomly generated numbers. That done, the  
+menu offers you three choices: press L to perform a linear search, press B to  
+perform a binary search, or press Q to exit the program. If you choose to  
+perform a search, you then must supply a value for which to search. Try  
+performing both a linear and binary search on the same value to see how much  
+more quickly a binary search can find a match in a 5,000-item data set. 
+ 
+PUTTING THE FUNCTIONS TO GOOD USE 
+--------------------------------- 
+To use the two search functions (BINARYSEARCH and LINEARSEARCH) in programs  
+of your own making, you could type them into each program to which you want  
+to add search capability. But a better alternative is to extract them--singly  
+or together--from SEARCH.BAS and store them under an appropriate filename (or  
+appropriate filenames). Start by using your mouse or the Shift keys to  
+highlight the sections of SEARCH.BAS that you don't need; press the Del key  
+to delete the unwanted lines. Next, using the File menu's Save As option,  
+assign a unique filename, such as SEARCH.LIB, to the code that remains on  
+screen. 
+ 
+Unfortunately, when you want to add this file into a QBasic program, you  
+can't simply load the QBasic program you're working on and import the file.  
+But you can use the append form of DOS's copy command to merge the two files.  
+For instance, to add the file named SEARCH.LIB, which contains the functions  
+LINEARSEARCH and BINARYSEARCH, to a program named DATABASE.BAS, type the  
+following at the DOS command line: 
+ 
+copy database.bas + search.lib 
+ 
+DOS places SEARCH.LIB at the end of the file, which is where QBasic expects  
+to find a function. 
+ 
+The next time you call up QBasic and load DATABASE.BAS, QBasic will add the  
+proper declare statements to your code, and the LINEARSEARCH and BINARYSEARCH  
+functions will appear in the program's function list. 
+ 
+The next step in integrating the search functions into your QBasic program is  
+writing code to solicit from the user the type of search to conduct, the name  
+of the array to search, and the value for which to look. The SEARCH.BAS  
+sample program presents a menu of choices and uses INPUT statements to  
+retrieve the responses. To use one of the search functions, you must use  
+syntax such as the following: 
+ 
+return value = function (array(), search value) 
+ 
+In the sample program, the syntax for a linear search takes this form: 
+ 
+POSITION = LINEARSEARCH(NUMLIST(),NUMBER) 
+ 
+For a binary search, the syntax is analogous: 
+ 
+POSITION = BINARYSEARCH(NUMLIST(),NUMBER) 
+ 
+The variable NUMLIST() holds the name of the array to search (the parentheses  
+identify the variable as an array name), NUMBER holds the value to search  
+for, and POSITION holds the value returned by the search. LINEARSEARCH and  
+BINARYSEARCH, of course, name the function to be carried out. Please note,  
+however, that you may substitute any valid numeric array for NUMLIST() in  
+your own programs. Likewise, you may use other variables in place of NUMBER  
+and POSITION. 
+ 
+Next, you must a devise a way to display the results of the search. The  
+sample program, SEARCH.BAS, prints the position, within the array, of the  
+number you specify. If the number isn't in the array, however, the search  
+functions return a value of -1, and the program displays an error message on  
+screen. When you incorporate the search functions into your QBasic programs,  
+you should take similar steps to check for input errors. 
+ 
+Making Modifications 
+-------------------- 
+You also might want to consider changing the syntax of the  search commands  
+to accommodate alphanumeric information. As written, the functions can handle  
+only numeric data. You could use them, for example, to search a numeric array  
+of part numbers for a specific number. However, you could not use them to  
+search for a specific name in a string array of names. 
+ 
+Fortunately, though, adding this capability is simple: You add a dollar sign  
+($) to the array name when declaring the function, when calling the function,  
+and within the actual function definition. The dollar sign tells QBasic that  
+you are working with a string array rather than a numeric array. Your declare  
+statements might look like this, for example: 
+ 
+DECLARE FUNCTION BINARYSEARCH (ARRAY$(), SEARCHNUM$) 
+DECLARE FUNCTION LINEARSEARCH (ARRAY$(), SEARCHNUM$) 
+ 
+The first line of BINARYSEARCH then would read: 
+ 
+FUNCTION BINARYSEARCH (ARRAY$(), SEARCHNUM$) 
+ 
+and the first line of LINEARSEARCH would be: 
+ 
+FUNCTION LINEARSEARCH (ARRAY$(), SEARCHNUM$) 
+ 
+The code to call the routines would read: 
+ 
+variable1 = LINEARSEARCH(array1$(),SEARCHNUM$) 
+variable2 = BINARYSEARCH(array2$(),SEARCHNUM$) 
+ 
+Just remember that in QBasic, numeric arrays are treated differently from  
+string arrays. If the array you are working with is numeric, you do not need  
+to modify the search routines. However, if you plan to use the routines with  
+string arrays containing alphabetic or alphanumeric information, you need to  
+change the code to recognize string arrays. 

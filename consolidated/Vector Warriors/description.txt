@@ -1,0 +1,20 @@
+'CHDIR ".\samples\qb45com\action\sfb2"
+
+'                           SFB2:Vector Warriors                             `
+'                              by Kevin Reems                                `
+'                                1997--1998                                  `
+'                              Created Using,                                `
+'                  The Slash Engine by Kevin Reems 1997-1998                 `
+'----------------------------------------------------------------------------`
+'Press F5 To Play                                                            `
+'                                                                            `
+'Kevin Reems a.k.a. LBt1st - lbt1st@cyberdude.com                            `
+'              Please View SFB2 Guide Part-A.html                            `
+'                                                                            `
+'                                                                            `
+'                                                                            `
+'                                                                            `
+'                                                                            `
+'                                                                            `
+'                                                                            `
+'----------------------------------------------------------------------- SFB2

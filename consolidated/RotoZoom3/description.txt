@@ -1,0 +1,1 @@
+A modification of Galleon's RotoZoom in Wiki that both scales and rotates an image, this version scales the x-axis and y-axis independently allowing some rotations of image just by changing X or Y Scales making this already powerful routine even more a versatile image tool.

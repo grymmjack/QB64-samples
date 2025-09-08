@@ -1,0 +1,38 @@
+'   USAGE.BAS
+'      by Tim Syrop
+'   Copyright (c) 1994 DOS Resource Guide
+'   Published in Issue #14, March 1994, page 53
+
+==============================================================================
+
+-----------
+ USAGE.BAS
+-----------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later, or Microsoft Quick Basic 
+4.x.
+
+WHAT USAGE.BAS DOES:
+USAGE.BAS is a simple program that can help you detect when someone has been 
+using your computer in your absence.  It creates a file that records the date 
+and time whenever your computer is powered up or rebooted.
+
+USING USAGE.BAS:
+Copy USAGE.BAS into your C:\DOS directory.  Then add the following line to 
+your AUTOEXEC.BAT file:
+
+QBASIC /RUN C:\DOS\USAGE.BAS
+
+Now, each time your computer is turned on or rebooted, the QBasic screen will 
+flash briefly and USAGE.BAS will run, recording the date and time in a file 
+named UL.SYS, which is located in the C:\DOS directory.  Later, you can 
+examine the contents of UL.SYS by changing to the C:\DOS directory and typing:
+
+TYPE UL.SYS
+
+at the DOS prompt.  You'll be able to see exactly when your computer was 
+started up.  The dates and times listed may help you determine if someone is 
+using your computer when you are not around.
+
+For further details on USAGE.BAS, see "Private Sentry" (DRG #14, March 1994, 
+page 53).

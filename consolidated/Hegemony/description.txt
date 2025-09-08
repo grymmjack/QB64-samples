@@ -1,0 +1,20 @@
+'HEGEMONY 3.0.e
+'Copyright: Akos Ivanyi (21.07.2003)
+
+
+'-----=====GENERAL GAMEFLOW=====-----
+
+'     variables:
+'         |
+'      opening:
+'         |
+'   choosecontrol:<----O
+'      /      \        |
+'    human:   ai:      |
+'      \      /        |
+'      nextturn:------>O
+
+'      (gosubs)
+
+
+'-----=====THE GAME=====-----

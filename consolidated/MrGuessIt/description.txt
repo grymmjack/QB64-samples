@@ -1,0 +1,2 @@
+PRINT "This is a guessing game between the numbers 0 and 50."
+PRINT "I will tell you if you are higher orlower."

@@ -1,0 +1,7 @@
+We develop four variations on the CIRCLE command in the form of four SUBs:
+(i) CircleFill = Filled circle
+(ii) EllipseFill = Filled ellipse
+(iii) EllipseTilt = Tilted ellipse
+(iv) EllipseTiltFill = Tilted and filled ellipse
+
+These works have been optimized for speed and respect for alpha transparency.

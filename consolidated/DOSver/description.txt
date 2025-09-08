@@ -1,0 +1,30 @@
+'  DOSVER.BAS
+'     by Phil Weber
+'  Copyright (c) 1993 DOS Resource Guide Magazine
+'  Published in Issue #13, January 1994, page 57.
+
+==============================================================================
+
+------------
+ DOSVER.BAS
+------------
+SYSTEM REQUIREMENTS:
+The version of QBasic that comes with DOS 5 or later.
+
+WHAT DOSVER.BAS DOES:
+This program demonstrates how an assembly language routine can be used within 
+a QBasic program to perform a task that QBasic does not perform very 
+efficiently on its own.  This simple example program determines the DOS 
+version under which it's running.  You can use the technique in your own 
+QBasic programs where you want to determine the DOS version.  See EXIST.BAS on 
+this diskette for another example of how assembly language can be incorporated 
+into a QBasic program.
+
+USING DOSVER.BAS:
+To load the program in QBasic, type QBASIC DOSVER.BAS (using path names if 
+necessary) at the DOS prompt. Then run the program by selecting the Start 
+option in QBasic's Run menu, or press Shift-F5. The program clears the screen 
+and prints a message listing the version of DOS running on your computer.
+
+For further details on DOSVER.BAS, see "Supercharge Your QBasic Programs" (DRG 
+#13, January 1994, page 57).

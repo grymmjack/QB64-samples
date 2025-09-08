@@ -1,0 +1,139 @@
+  '------------------- Portal.BAS -------------------------
+  '           PC-to-PC File Transfer Utility
+  '                      by
+  '                 John Wolfskill
+  '
+  ' Copyright (C) 1993 DOS Resource Guide
+  ' Published in Special Utilities Issue, April 1993
+  '
+  ' Requires: RS-232C Serial communications port(s)
+  '         : Serial null modem cable, or cable adapter
+  '         : Microsoft Quickbasic 4.x (or later) compiler
+  '--------------------------------------------------------
+  '
+
+==============================================================================
+
+------------                **** BONUS PROGRAM ****
+ PORTAL.EXE
+ PORTAL.BAS
+------------
+SYSTEM REQUIREMENTS:
+Requires DOS 3.0 and later; two PCs, each with a serial port; and a null 
+modem serial cable (or a standard serial cable and one null modem adapter).
+
+                   *** PORTAL Does NOT require QBasic. ***
+
+Originally written in Microsoft Quick Basic, this program is on this diskette 
+in two forms: as an EXE file and as a BAS file. Because PORTAL.EXE is a stand-
+alone, executable program, you can start it at the DOS prompt by typing 
+PORTAL, even if you don't own a copy of Quick Basic. To use PORTAL.BAS -- 
+perhaps because you want to modify the original code and recompile the program 
+-- you need Microsoft Quick Basic, version 4.0 or 4.5.
+
+WHAT PORTAL.EXE DOES:
+This file transfer program lets you use a null modem cable to move files 
+between two PCs. The program is useful when it's impractical to transfer files 
+via a floppy disk, because numerous files are involved or because the 
+information you're transferring doesn't fit onto a single floppy disk. 
+PORTAL.EXE also is helpful when it's impossible to transfer files because the 
+receiving computer lacks a floppy drive of the correct size and capacity.
+
+USING PORTAL.EXE:
+Connect the null modem cable (or the adapter and serial cable) to the serial 
+ports of the sending and receiving PCs. Copy PORTAL.EXE to the hard disks of 
+both machines.
+
+Determine which COM port the cable (or adapter) is attached to on the sending 
+machine and use the correct command to start the program:
+*If the sending PC is attached to COM1, type PORTAL.
+*If the sending PC is attached to COM2, type PORTAL P=2.
+
+Portal will display its title screen and wait for you to start the program on 
+the receiving PC. Identify which COM port the cable is attached to on that 
+machine, then start Portal on the receiving PC:
+*If the receiving PC is attached to COM1, type PORTAL M=R.
+*If the receiving PC is attached to COM2, type PORTAL P=2 M=R.
+
+If all goes well, both machines will display Portal's main program screen. (If 
+this fails to happen, press Esc on both machines to exit Portal, check which 
+COM ports the cable is attached to, and start Portal again, using the 
+appropriate commands.)
+
+The Main Menu
+The program's main menu offers six options:
+F1 = Rescan Directory
+F2 = Create Directory
+F3 = Change Drive
+F4 = Send/Receive
+F5 = Tag/Untag Files
+F6 = Quit
+
+Most likely, you'll want to start by logging onto the directory on the 
+receiving computer that will accept the transferred files. Press F5 to display 
+the current DOS directory and activate the file window. Position the cursor 
+over the entry labeled ** [DIR], then press Enter to move upward in the 
+directory tree. To change directories, position the cursor over the correct 
+directory name and press Enter. Press Esc to return to the main menu.
+
+If you need to create a new directory, press F2 and type a valid DOS directory 
+name. Portal places the new directory immediately below the current directory 
+in your directory tree. To exit this screen without creating a directory, 
+press Enter, ignoring the error message the program displays, and press any 
+key to continue.
+
+To change the drive designation, press F3, type the correct drive letter, and 
+press Enter.
+
+Effecting a Transfer
+Before you can transfer files, you must tag them. To do so, press F5 on the 
+sending PC. Go to the directory from which you want to transfer files, using 
+the PgUp, PgDn, Home, and End keys to scroll through the filenames. Press the 
+spacebar to tag a single file. Pressing the spacebar again untags the file. 
+Pressing the plus key (+) tags all files in a directory; pressing the minus 
+key (-) untags all tagged files. When the correct files are tagged, press Esc 
+to return to the main menu.
+
+To begin a file transfer, press F4 on the receiving PC. You'll see a "Waiting 
+for start signal.." message. When you press F4 on the sending PC, the program 
+displays a "Sending start signal.." message, and file transfer begins.
+
+Throughout transmission, the screen displays information about the file and 
+its data blocks to keep you abreast of the status of the transfer. When 
+transmission is complete, a message tells you how many files were received. 
+Press F1 to rescan the current directory and see a list of the files received.
+
+Error Checking
+To help you track and diagnose transmission errors, the receiving PC displays 
+the results of a cyclic redundancy check (CRC). When a CRC error occurs, the 
+receiving PC sounds a tone and tells the sending PC to resend the block of 
+data in question.
+
+If you get numerous CRC errors, stop the file transfer by pressing Esc or 
+Ctrl-Alt-Del. Inspect the cable hookup and run a diagnostic program to check 
+your serial port hardware. If you've done your best to eliminate problems but 
+they recur, try lowering Portal's default transmission rate from 19,200 bits 
+per second to 9,600 or 4,800 bps. To start Portal at 9,600 bps, for instance, 
+add B=9600 to the command line when starting Portal on both the sending and 
+receiving computer.
+
+Portal's default block size is 1,024 bytes (1K). You may add the command 
+switch S=xxxx when starting Portal to transfer files in larger blocks. 
+Substitute 2048 or 4096 for xxxx.
+
+Finally, to get help at any stage along the way, type PORTAL ? at the DOS 
+prompt.
+
+CREATING PORTAL.EXE FROM PORTAL.BAS
+(You won't need to do this unless you decide to modify PORTAL.BAS and
+recompile it.  And you can't modify Portal unless you have Microsoft Quick
+Basic on your computer.)
+
+Working within Quick Basic, press Alt-R, then select the Make EXE File option 
+from the menu. When the dialog box appears, select Produce: stand-alone EXE 
+File, then select Make EXE and Exit. Pressing Enter creates the stand-alone 
+file PORTAL.EXE.
+
+For further information on PORTAL.EXE, see programmer John Wolfskill's 
+article, "File Transfer on the Cheap" (DOS Resource Guide, Special 
+Utilities Issue, April 1993, page 19).

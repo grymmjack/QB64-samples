@@ -1,0 +1,1 @@
+Demo of the Gaspard-Rice system. Left-click to change location.

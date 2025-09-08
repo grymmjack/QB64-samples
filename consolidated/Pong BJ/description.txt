@@ -1,0 +1,3 @@
+PRINT "PONG CLONE"
+PRINT " "
+PRINT "                            programed by bj mccann"

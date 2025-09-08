@@ -1,0 +1,6 @@
+'-----------------------------------------------------------------------------------------------------
+'                                TORUS
+'   This program draws a Torus figure. The program accepts user input
+'   to specify various TORUS parameters. It checks the current system
+'   configuration and takes appropriate action to set the best possible
+'   initial mode.

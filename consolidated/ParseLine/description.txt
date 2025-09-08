@@ -1,0 +1,5 @@
+I guess every developer is sooner or later in need of such a parsing function: Doesn't matter if it's to split a simple text line into its single words, quickly reading CSV data into an array, break up a path specification into the single folder names or get the individual options of a given command line or of an URL query string.
+
+Obviously such a function must be able to recognize several separator chars and needs to be able to suppress the splitting of components in quoted sections. Special to this function is the ability to optionally use different chars for opening quotes and closing quotes, which e.g. allows to read out sections in parenthesis or brackets.
+
+For usage, see the full description available in separate HTML document (compressed file).
